@@ -817,7 +817,7 @@ function get_number_stored() {
         data: {
             number_stored: '1',
         },
-        beforeSend: add_spinner_icon(number_stored, 'border', 'primary', 'left'),
+        complete: add_spinner_icon(number_stored, 'border', 'primary', 'left'),
         success: function (data) {
             remove_spinner_icon(number_stored);
             number_stored.innerHTML = '当前号码存储数量' + data + '条';
