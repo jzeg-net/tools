@@ -78,7 +78,7 @@ task("minimize_local_static",
         "cleanCSS",
     )
 );
-task("build_tools_static",
+task("build_static_tools",
     parallel(
         "minimize_local_static",
     )

@@ -1,22 +1,24 @@
 require('./common');
 require('./tools_static');
 
-const {task, src, dest, series, parallel, lastRun, watch, registry, symlink} = require('gulp'),
-    cleanCSS = require("gulp-clean-css"),
-    autoPreFixer = require("autoprefixer"),
-    postcss = require("gulp-postcss"),
-    terser = require("gulp-terser"),
-    concat = require('gulp-concat'),
-    rename = require("gulp-rename"),
-    header = require('gulp-header'),
-    footer = require('gulp-footer'),
-    del = require("del");
+const {task, series, parallel} = require('gulp');
 
 // Combined tasks
 // 合并任务
 task("build_static",
+    series(
+        "build_static_tools",
+        "build_static_common",
+    )
+);
+task('watch_change',
     parallel(
-        "build_tools_static",
-        "build_common_static",
+        'watch_static',
+        'watch_config_json',
+    )
+);
+task('copy',
+    parallel(
+        'copy_common',
     )
 );

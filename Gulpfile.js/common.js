@@ -1,4 +1,5 @@
-const {task, src, dest, series, parallel, lastRun, watch, registry, symlink} = require('gulp'),
+const config = require('./config.json'),
+    {task, src, dest, series, parallel, lastRun, watch, registry, symlink} = require('gulp'),
     cleanCSS = require("gulp-clean-css"),
     autoPreFixer = require("autoprefixer"),
     postcss = require("gulp-postcss"),
@@ -79,8 +80,10 @@ task(copy_qrcode);
 /** task("add_header"); **/
 task(add_footer_funDebug_api);
 
+task(watch_config_json);
+
 //Combined tasks
-task("copy",
+task("copy_common",
     parallel(
         copy_fontawesome_free,
         copy_js_cookie,
@@ -102,10 +105,10 @@ task("add_footer",
         add_footer_funDebug_api,
     )
 );
-task("build_common_static",
+task("build_static_common",
     parallel(
         "add_footer",
-        "copy",
+        "copy_common",
     )
 );
 
@@ -193,10 +196,14 @@ function copy_js_cookie(done) {
 }
 
 function add_footer_funDebug_api(done) {
-    const add_text = '\nfundebug.init({apikey:"3d4b48db363609255fd0abb3cfa559ca84a7a4ca4ca8922fbd42d8d38e2c36a4"});\n';
+    const add_text = '\nfundebug.init({apikey:"' + config.fundebug_api_key + '"});\n';
     src([fundebug_js_path], {since: lastRun(add_footer_funDebug_api)})
         .pipe(footer(add_text))
         .pipe(rename('fundebug.min.js'))
         .pipe(dest(static_js));
     done();
+}
+
+function watch_config_json() {
+    return watch(['./config.json'],task(add_footer_funDebug_api));
 }
