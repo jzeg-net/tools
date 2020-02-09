@@ -34,7 +34,7 @@ function click_search_btn(e) {
 
 function check_search(options) {
     let search_input_value = check_search_input_value();
-    let search_regional_value = check_search_regional_value();
+    let search_regional_value = check_regional_value('search_regional', '请选择您要查询的区域<br><i class="mt-2 text-muted fa-2x fa-fw fas fa-map-signs"></i>');
     if (search_input_value && search_regional_value) {
         options.search_input_value = search_input_value;
         options.search_regional_value = search_regional_value;
@@ -65,19 +65,19 @@ function check_search_input_value() {
     }
 }
 
-function check_search_regional_value() {
-    let search_regional_list = document.querySelectorAll('input[name=search_regional]');
+function check_regional_value(input_name, tip_text) {
+    let regional_list = document.querySelectorAll('input[name=' + input_name + ']');
     let regional_value;
-    let regional_list = [];
+    let regional_array = [];
 
-    for (let x = search_regional_list.length, i = 0; i < x; i++) {
-        regional_list.push(search_regional_list[i].value);
-        if (true === search_regional_list[i].checked) {
-            regional_value = search_regional_list[i].value;
+    for (let x = regional_list.length, i = 0; i < x; i++) {
+        regional_array.push(regional_list[i].value);
+        if (true === regional_list[i].checked) {
+            regional_value = regional_list[i].value;
         }
     }
-    if (!regional_list.includes(regional_value)) {
-        bootstrapModalJs('', create_small_center_text('请选择您要查询的区域<br><i class="mt-2 text-muted fa-2x fa-fw fas fa-map-signs"></i>', 'danger'), '', 'sm');
+    if (!regional_array.includes(regional_value)) {
+        bootstrapModalJs('', create_small_center_text(tip_text, 'danger'), '', 'sm');
         return false;
     } else {
         return regional_value;
@@ -297,25 +297,35 @@ function show_add_number_form() {
 }
 
 function verify_add_number_data() {
+    let number = check_number_data();
+    let regional = check_regional_data();
+    return !!(number && regional);
+}
+
+function check_number_data() {
     let phone_name_all = document.querySelectorAll('.phone_name');
     let tel_number_all = document.querySelectorAll('.tel_number');
     let mobile_number_all = document.querySelectorAll('.mobile_number');
     let all_verify_events = [].concat(phone_name_all, tel_number_all, mobile_number_all);
-    let verify_result = [];
+    let check_result = [];
 
     for (let x = all_verify_events.length, i = 0; i < x; i++) {
         for (let y = all_verify_events[i].length, j = 0; j < y; j++) {
             if (all_verify_events[i][j].classList.contains('is-valid')) {
-                verify_result.push(true);
+                check_result.push(true);
             } else if (all_verify_events[i][j].classList.contains('is-invalid')) {
-                verify_result.push(false);
+                check_result.push(false);
             } else if (!all_verify_events[i][j].classList.contains('is-invalid') && !all_verify_events[i][j].classList.contains('is-valid')) {
                 all_verify_events[i][j].classList.add('is-invalid');
-                verify_result.push(false);
+                check_result.push(false);
             }
         }
     }
-    return !verify_result.includes(false);
+    return !check_result.includes(false);
+}
+
+function check_regional_data() {
+    return check_regional_value('add_regional', '请选择您所添加号码的区域');
 }
 
 function add_number_data() {
