@@ -50,7 +50,7 @@
     "gulp-postcss": "^8.0.0",
     "gulp-rename": "^2.0.0",
     "gulp-terser": "^1.2.0",
-    "stylelint": "^13.0.0"
+    "stylelint": "^13.1.0"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.12.1",
