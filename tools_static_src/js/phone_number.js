@@ -303,15 +303,6 @@ function verify_add_number_data() {
     let all_verify_events = [].concat(phone_name_all, tel_number_all, mobile_number_all);
     let verify_result = [];
 
-    for (let x = phone_name_all.length, i = 0; i < x; i++) {
-        if (phone_name_all[i].value.length === 0) {
-            phone_name_all[i].value = '必填';
-        }
-        if (phone_name_all[i].value.length > 0 && (tel_number_all[i].value.length === 0 && mobile_number_all[i].value.length === 0)) {
-            tel_number_all[i].value = '选填其一';
-            mobile_number_all[i].value = '选填其一';
-        }
-    }
     for (let x = all_verify_events.length, i = 0; i < x; i++) {
         for (let y = all_verify_events[i].length, j = 0; j < y; j++) {
             if (all_verify_events[i][j].classList.contains('is-valid')) {
@@ -319,6 +310,7 @@ function verify_add_number_data() {
             } else if (all_verify_events[i][j].classList.contains('is-invalid')) {
                 verify_result.push(false);
             } else if (!all_verify_events[i][j].classList.contains('is-invalid') && !all_verify_events[i][j].classList.contains('is-valid')) {
+                all_verify_events[i][j].classList.add('is-invalid');
                 verify_result.push(false);
             }
         }
