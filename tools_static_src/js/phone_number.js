@@ -352,17 +352,6 @@ function add_number_data() {
     return JSON.stringify(result);
 }
 
-function check_add_input_value(RegExp_rules_name, error_text, element) {
-    let RegExp_result = RegExp_rules_name.test(element.value);
-    if (!RegExp_result) {
-        validation_invalid_div(element, error_text);
-        input_error(element);
-    } else {
-        input_success(element);
-        remove_validation_div(element);
-    }
-}
-
 function create_add_number_form() {
     let add_number_form = document.createElement("div");
     let number_stored = document.createElement("div");
@@ -471,7 +460,7 @@ function create_add_phone_name() {
     input.setAttribute('maxlength', '15');
     input.placeholder = '单位名称 ';
     input.addEventListener('input', function () {
-        check_add_input_value(RegExp_rules.phone_name, '请输入单位的中文名称 例如：\n掘进一队', this);
+        check_regexp_input_value(RegExp_rules.phone_name, '请输入单位的中文名称 例如：\n掘进一队', this);
     });
 
     label.appendChild(i);
@@ -503,7 +492,7 @@ function create_add_tel_number() {
     input.setAttribute('maxlength', '12');
     input.placeholder = '座机电话号码 ';
     input.addEventListener('input', function () {
-        check_add_input_value(RegExp_rules.tel_number, '请输入当地正确格式的座机号码 例如：\n0319-2061234\n0319-2089123\n······ 等更多正确格式', this);
+        check_regexp_input_value(RegExp_rules.tel_number, '请输入当地正确格式的座机号码 例如：\n0319-2061234\n0319-2089123\n······ 等更多正确格式', this);
     });
 
     label.appendChild(i);
@@ -535,7 +524,7 @@ function create_add_mobile_number() {
     input.setAttribute('maxlength', '15');
     input.placeholder = '手机电话号码 ';
     input.addEventListener('input', function () {
-        check_add_input_value(RegExp_rules.mobile_number, '请输入正确格式的手机号 例如：\n13812345678\n+8613812345678\n008613812345678', this);
+        check_regexp_input_value(RegExp_rules.mobile_number, '请输入正确格式的手机号 例如：\n13812345678\n+8613812345678\n008613812345678', this);
     });
 
     label.appendChild(i);
@@ -775,6 +764,17 @@ function ajax_error(error_result) {
 function ajax_error_fun_debug(error_result, error_name) {
     if (fundebug) {
         fundebug.notify(error_name, JSON.stringify(error_result));
+    }
+}
+
+function check_regexp_input_value(RegExp_rules_name, error_text, element) {
+    let RegExp_result = RegExp_rules_name.test(element.value);
+    if (!RegExp_result) {
+        validation_invalid_div(element, error_text);
+        input_error(element);
+    } else {
+        input_success(element);
+        remove_validation_div(element);
     }
 }
 
