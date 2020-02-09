@@ -33,8 +33,8 @@ function click_search_btn(e) {
 }
 
 function check_search(options) {
-    let search_input_value = check_search_input_value(options.clicked_btn);
-    let search_regional_value = check_search_regional_value(options.clicked_btn);
+    let search_input_value = check_search_input_value();
+    let search_regional_value = check_search_regional_value();
     if (search_input_value && search_regional_value) {
         options.search_input_value = search_input_value;
         options.search_regional_value = search_regional_value;
@@ -44,7 +44,7 @@ function check_search(options) {
     }
 }
 
-function check_search_input_value(clicked_btn) {
+function check_search_input_value() {
     let phone_number_input = document.querySelector('#phone_number_input');
     let minlength = phone_number_input.getAttribute('minlength');
     let maxlength = phone_number_input.getAttribute('maxlength');
@@ -65,7 +65,7 @@ function check_search_input_value(clicked_btn) {
     }
 }
 
-function check_search_regional_value(clicked_btn) {
+function check_search_regional_value() {
     let search_regional_list = document.querySelectorAll('input[name=search_regional]');
     let regional_value;
     let regional_list = [];
