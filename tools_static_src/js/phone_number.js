@@ -77,7 +77,7 @@ function check_regional_value(input_name, tip_text) {
         }
     }
     if (!regional_array.includes(regional_value)) {
-        bootstrapModalJs('', create_small_center_text(tip_text, 'danger'), '', 'sm');
+        bootstrapModalJs('', create_small_center_text(tip_text, 'danger'), '', 'sm', true);
         return false;
     } else {
         return regional_value;
