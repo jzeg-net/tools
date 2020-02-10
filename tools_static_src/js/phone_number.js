@@ -387,33 +387,6 @@ function create_add_number_form_close() {
     add_number_form.insertBefore(close_btn, add_number_form.firstChild);
 }
 
-function create_close_btn(fun_name) {
-    let close_button = document.createElement("button");
-    let close_span = document.createElement("span");
-
-    close_button.type = 'button';
-    close_button.className = 'position-relative close';
-    close_button.setAttribute('aria-label', 'Close');
-    close_button.style.top = '-1.3rem';
-    close_button.style.right = '-1.3rem';
-
-    close_span.setAttribute('aria-hidden', 'true');
-    close_span.title = '关闭';
-    close_span.innerHTML = '&times;';
-    close_span.addEventListener('click', fun_name);
-    close_span.addEventListener('mouseover', function (e) {
-        let e_target = e.target;
-        e_target.classList.toggle('text-danger');
-    });
-    close_span.addEventListener('mouseleave', function (e) {
-        let e_target = e.target;
-        e_target.classList.toggle('text-danger');
-    });
-
-    close_button.appendChild(close_span);
-    return close_button;
-}
-
 function create_add_form_init() {
     create_add_form_div();
     create_add_btn_add();
