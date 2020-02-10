@@ -151,7 +151,7 @@ function create_search_result() {
 
     search_result.appendChild(span);
     search_result.appendChild(search_result_number_list);
-    jt_container.appendChild(search_result);
+    jt_container.insertBefore(search_result, jt_container.firstElementChild.nextElementSibling);
 }
 
 function create_search_result_number_list(data) {
