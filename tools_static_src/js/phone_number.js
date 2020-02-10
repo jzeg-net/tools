@@ -282,18 +282,26 @@ function copy_search_result_number() {
 
 
 /** 增加号码 **/
-create_add_number_form();
 let add_new_number = document.querySelector('#add_new_number');
-let add_number_submit = document.querySelector('#add_number_submit');
-let add_number_form = document.querySelector('#add_number_form');
+let add_number_submit;
+let add_number_form;
 
-if (add_new_number) add_new_number.addEventListener('click', show_add_number_form, {once: true});
-if (add_number_submit) add_number_submit.addEventListener('click', add_number);
+if (add_new_number) add_new_number.addEventListener('click', show_add_number_form);
 
 function show_add_number_form() {
+    add_new_number.removeEventListener('click', show_add_number_form);
+    create_add_number_form();
+    add_number_submit = document.querySelector('#add_number_submit');
+    add_number_form = document.querySelector('#add_number_form');
+
     create_add_form_init();
     create_add_regional('button');
-    add_number_form.classList.toggle('show');
+    create_add_number_form_close();
+}
+
+function dispose_add_number_form() {
+    jt_container.removeChild(add_number_form);
+    add_new_number.addEventListener('click', show_add_number_form);
 }
 
 function verify_add_number_data() {
@@ -357,13 +365,14 @@ function create_add_number_form() {
     let number_stored = document.createElement("div");
     let a = document.createElement("a");
 
-    add_number_form.className = 'mt-5 px-4 py-3 text-center border border-info rounded fade';
+    add_number_form.className = 'mt-5 px-4 py-3 text-center border border-info rounded';
     add_number_form.id = 'add_number_form';
 
     a.href = 'javascript:';
     a.className = 'my-2 btn btn-primary';
     a.id = 'add_number_submit';
     a.innerHTML = '提交新号码';
+    a.addEventListener('click', add_number);
 
     number_stored.className = 'text-right';
     number_stored.id = 'number_stored';
@@ -371,6 +380,38 @@ function create_add_number_form() {
     add_number_form.appendChild(a);
     add_number_form.appendChild(number_stored);
     jt_container.appendChild(add_number_form);
+}
+
+function create_add_number_form_close() {
+    let close_btn = create_close_btn(dispose_add_number_form);
+    add_number_form.insertBefore(close_btn, add_number_form.firstChild);
+}
+
+function create_close_btn(fun_name) {
+    let close_button = document.createElement("button");
+    let close_span = document.createElement("span");
+
+    close_button.type = 'button';
+    close_button.className = 'position-relative close';
+    close_button.setAttribute('aria-label', 'Close');
+    close_button.style.top = '-1.3rem';
+    close_button.style.right = '-1.3rem';
+
+    close_span.setAttribute('aria-hidden', 'true');
+    close_span.title = '关闭';
+    close_span.innerHTML = '&times;';
+    close_span.addEventListener('click', fun_name);
+    close_span.addEventListener('mouseover', function (e) {
+        let e_target = e.target;
+        e_target.classList.toggle('text-danger');
+    });
+    close_span.addEventListener('mouseleave', function (e) {
+        let e_target = e.target;
+        e_target.classList.toggle('text-danger');
+    });
+
+    close_button.appendChild(close_span);
+    return close_button;
 }
 
 function create_add_form_init() {
