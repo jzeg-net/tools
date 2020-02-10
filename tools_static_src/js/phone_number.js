@@ -1,4 +1,4 @@
-/** 搜索 **/
+/** 搜索号码 **/
 create_search_result();
 let search_btn = document.querySelector('#search_btn');
 let search_regional_dropdown_menu = document.querySelector('#search_regional_dropdown_menu');
@@ -30,15 +30,6 @@ function click_search_btn(e) {
         }
         check_search(search_options);
     }
-}
-
-function show_search_result() {
-
-}
-
-function dispose_search_result() {
-    let search_result = document.querySelector('#search_result');
-    jt_container.removeChild(search_result);
 }
 
 function check_search(options) {
@@ -287,6 +278,17 @@ function copy_search_result_number() {
             '</span></div>';
     }
 
+}
+
+
+/** 搜索号码结果 **/
+function show_search_result() {
+
+}
+
+function dispose_search_result() {
+    let search_result = document.querySelector('#search_result');
+    jt_container.removeChild(search_result);
 }
 
 
