@@ -32,6 +32,15 @@ function click_search_btn(e) {
     }
 }
 
+function show_search_result() {
+
+}
+
+function dispose_search_result() {
+    let search_result = document.querySelector('#search_result');
+    jt_container.removeChild(search_result);
+}
+
 function check_search(options) {
     let search_input_value = check_search_input_value();
     let search_regional_value = check_regional_value('search_regional', '请选择您要查询的区域<br><i class="mt-2 text-muted fa-2x fa-fw fas fa-map-signs"></i>');
@@ -192,10 +201,10 @@ function create_search_result_number_list_name(name) {
     i.className = 'mr-2 fas fa-home text-info hvr-icon';
     i.style.cursor = 'pointer';
 
-    span.appendChild(ul);
-    ul.appendChild(li);
-    li.append(span_name);
     li.insertBefore(i, li.firstChild);
+    li.append(span_name);
+    ul.appendChild(li);
+    span.appendChild(ul);
 
     return span;
 }
@@ -205,7 +214,7 @@ function create_search_result_number_list_number(number, number_type) {
     let ul = document.createElement('ul');
     let li = document.createElement('li');
     let span_number = document.createElement('span');
-    let i_number_icon = document.createElement('i');
+    let i_dial_number_icon = document.createElement('i');
     let i_clipboard_copy_icon = document.createElement('i');
 
     span.className = 'col-12 col-sm-5 col-md-4 col-lg-3';
@@ -215,19 +224,19 @@ function create_search_result_number_list_number(number, number_type) {
 
     number_type === 'tel' ? li.className = 'hvr-icon-grow-rotate number mb-2' : li.className = 'hvr-icon-grow-rotate number mb-2 text-none text-sm-right';
 
-    i_number_icon.className = 'ml-2 fa-fw fas fa-phone-volume text-success hvr-icon dial_number';
-    i_number_icon.title = '拨打号码';
-    i_number_icon.style.cursor = 'pointer';
+    i_dial_number_icon.className = 'ml-2 fa-fw fas fa-phone-volume text-success hvr-icon dial_number';
+    i_dial_number_icon.title = '拨打号码';
+    i_dial_number_icon.style.cursor = 'pointer';
 
     i_clipboard_copy_icon.className = 'ml-3 fa-fw far fa-copy text-success hvr-icon clipboard_copy';
     i_clipboard_copy_icon.title = '复制号码';
     i_clipboard_copy_icon.style.cursor = 'pointer';
 
-    span.appendChild(ul);
-    ul.appendChild(li);
     li.appendChild(span_number);
     li.appendChild(i_clipboard_copy_icon);
-    li.appendChild(i_number_icon);
+    li.appendChild(i_dial_number_icon);
+    ul.appendChild(li);
+    span.appendChild(ul);
 
     return span;
 }
