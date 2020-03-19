@@ -3,19 +3,19 @@ if (!defined('JZEG_NET_SMS')) define('JZEG_NET_SMS', 0);
 if ($_GET) die();
 
 if (isset($_POST['_token'])) {
-    ('' === $_POST['_token']) ?: die();
+  ('' === $_POST['_token']) ?: die();
 } elseif (!isset($_POST['_token'])) {
-    die();
+  die();
 }
 
 if ($_POST['jt_sms_send_accessKeyId'] && $_POST['jt_sms_send_accessSecret'] && $_POST['jt_sms_send_PhoneNumbers'] && $_POST['jt_sms_send_TemplateCode']) {
-    if (isset($_POST['jt_sms_send_type']) && 'batch' === $_POST['jt_sms_send_type']) {
-        $batch_send_sms = true;
-    } else {
-        $batch_send_sms = false;
-    }
+  if (isset($_POST['jt_sms_send_type']) && 'batch' === $_POST['jt_sms_send_type']) {
+    $batch_send_sms = true;
+  } else {
+    $batch_send_sms = false;
+  }
 } else {
-    die();
+  die();
 }
 
 
@@ -33,17 +33,17 @@ global $template_json;
 
 $default_action_names = array_keys($template_json);
 if (true === array_key_exists($TemplateName, $default_action_names)) {
-    die('模板不存在');
+  die('模板不存在');
 }
 
 $request_action_value = ($batch_send_sms) ? 'SendBatchSms' : 'SendSms';
 $request_json = array(
-    "product" => "Dysmsapi",
-    "scheme" => "https",//生产模式的时候使用https
-    "version" => "2017-05-25",
-    "action" => $request_action_value,
-    "method" => "POST",
-    "host" => "dysmsapi.aliyuncs.com",
+  "product" => "Dysmsapi",
+  "scheme" => "https",//生产模式的时候使用https
+  "version" => "2017-05-25",
+  "action" => $request_action_value,
+  "method" => "POST",
+  "host" => "dysmsapi.aliyuncs.com",
 );
 
 $TemplateCode_value = $template_json[$TemplateName]['templateCode'];
@@ -64,9 +64,9 @@ $SmsUpExtendCode = null;
 $OutId = null;
 
 if (true === $batch_send_sms) {
-    require_once dirname(__FILE__) . '/SendBatchSms.php';
+  require_once dirname(__FILE__) . '/SendBatchSms.php';
 } else {
-    require_once dirname(__FILE__) . '/SendSms.php';
+  require_once dirname(__FILE__) . '/SendSms.php';
 }
 
 
@@ -107,16 +107,16 @@ $result['sms_request'] = $sms_request_result;
 $result['database'] = $database_result;
 
 if (!isset($result['database']['error']) && (!is_null($result['sms_request']['BizId']) && 'OK' === $result['sms_request']['Code'])) {
-    $result['status'] = true;
+  $result['status'] = true;
 } else {
-    if (isset($result['database']['error'])) {
-        $result['status'] = false;
-        $result['error']['type'][] = 'database';
-    }
-    if ('OK' !== $result['sms_request']['Code']) {
-        $result['status'] = false;
-        $result['error']['type'][] = 'sms_request';
-    }
+  if (isset($result['database']['error'])) {
+    $result['status'] = false;
+    $result['error']['type'][] = 'database';
+  }
+  if ('OK' !== $result['sms_request']['Code']) {
+    $result['status'] = false;
+    $result['error']['type'][] = 'sms_request';
+  }
 }
 
 echo json_encode($result);

@@ -2,7 +2,7 @@
 let jt_category = document.querySelector('#jt_category');
 let jt_category_btn = jt_category.querySelectorAll('.btn');
 
-jt_category.addEventListener('click', function(e) {
+jt_category.addEventListener('click', function (e) {
   let target = e.target;
   if (target.classList.contains('btn')) {
     jt_category_btns(target);

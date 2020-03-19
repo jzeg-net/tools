@@ -62,19 +62,19 @@ task("build_sms",
 );
 
 function copy_sms_js(done) {
-  src([sms_index_js_path,sms_query_js_path], {since: lastRun(copy_sms_js)})
+  src([sms_index_js_path, sms_query_js_path], {since: lastRun(copy_sms_js)})
     .pipe(dest(static_js));
   done();
 }
 
 function copy_sms_css(done) {
-  src([sms_index_css_path,sms_query_css_path], {since: lastRun(copy_sms_css)})
+  src([sms_index_css_path, sms_query_css_path], {since: lastRun(copy_sms_css)})
     .pipe(dest(static_css));
   done();
 }
 
 function terser_sms(done) {
-  src([sms_index_js_path,sms_query_js_path], {since: lastRun(terser_sms)})
+  src([sms_index_js_path, sms_query_js_path], {since: lastRun(terser_sms)})
     .pipe(terser())
     .pipe(rename({suffix: ".min"}))
     .pipe(dest(static_js));
@@ -82,7 +82,7 @@ function terser_sms(done) {
 }
 
 function cleanCSS_sms(done) {
-  src([sms_index_css_path,sms_query_css_path], {since: lastRun(cleanCSS_sms)})
+  src([sms_index_css_path, sms_query_css_path], {since: lastRun(cleanCSS_sms)})
     .pipe(postcss([autoPreFixer()]))
     .pipe(cleanCSS())
     .pipe(rename({suffix: ".min"}))

@@ -1,16 +1,16 @@
 <?php
 if ($_GET) {
-    die('方式错误');
+  die('方式错误');
 }
 
 if ($_POST) {
-    if ($_POST['query']) {
-        $query = $_POST['query'];
-    } else {
-        die('参数错误');
-    }
+  if ($_POST['query']) {
+    $query = $_POST['query'];
+  } else {
+    die('参数错误');
+  }
 } else {
-    die('无参数');
+  die('无参数');
 }
 
 

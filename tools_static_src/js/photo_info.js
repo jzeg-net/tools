@@ -23,24 +23,24 @@ let files_upload_rule_text = '<div class="small text-danger">' +
   '</div>';
 
 if (files_upload_rule_link) {
-  files_upload_rule_link.addEventListener('click', function() {
+  files_upload_rule_link.addEventListener('click', function () {
     bootstrapModalJs('', files_upload_rule_text, files_upload_rule_text_footer, '', true, false, 'shown', rules_status, bootstrapModalJs_options);
   });
 }
-$().ready(function() {
+$().ready(function () {
   if (files_upload_rule_input) {
     if (get_cookie('upload_rule') === 'yes') {
       files_upload_rule_input.checked = true;
       upload_files_rules_style(files_upload_rule_input);
     }
-    files_upload_rule_input.addEventListener('input', function(e) {
+    files_upload_rule_input.addEventListener('input', function (e) {
       upload_files_rules_style(e.target);
     });
   }
 });
 
 // photo_submit.addEventListener("click", ajax_images);
-photo_submit.addEventListener('click', function() {
+photo_submit.addEventListener('click', function () {
   upload_files_rules();
 });
 
@@ -80,10 +80,10 @@ function rules_status() {
   let rules_agree = document.body.querySelector('#rules_agree');
   let rules_disagree = document.body.querySelector('#rules_disagree');
   let rules_cancel = document.body.querySelector('#rules_cancel');
-  rules_agree.addEventListener('click', function() {
+  rules_agree.addEventListener('click', function () {
     agree_rules(files_upload_rule_input);
   });
-  rules_disagree.addEventListener('click', function() {
+  rules_disagree.addEventListener('click', function () {
     disagree_rules(files_upload_rule_input);
   });
   rules_cancel.addEventListener('click', cancel_rules);
@@ -123,14 +123,14 @@ function ajax_images() {
     timeout: 20000,
     // dataType: "json",
     data: form_data,
-    beforeSend: function() {
+    beforeSend: function () {
       add_spinner_icon(photo_submit);
     },
-    success: function(data) {
+    success: function (data) {
       remove_spinner_icon(photo_submit);
       ajax_result_success(data);
     },
-    error: function(error) {
+    error: function (error) {
       ajax_result_failed(error);
       if (error.length) bootstrapModalJs('', error, '', '', true);
       console.log('失败');

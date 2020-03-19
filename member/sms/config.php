@@ -10,12 +10,12 @@ $TemplateParam_value = json_encode($template_json[$action_name]['templateParam']
 
 
 $result_json = array(
-    "product" => "Dysmsapi",
-    "scheme" => "http",//生产模式的时候使用https
-    "version" => "2017-05-25",
-    "action" => "SendSms",
-    "method" => "POST",
-    "host" => "dysmsapi.aliyuncs.com",
+  "product" => "Dysmsapi",
+  "scheme" => "http",//生产模式的时候使用https
+  "version" => "2017-05-25",
+  "action" => "SendSms",
+  "method" => "POST",
+  "host" => "dysmsapi.aliyuncs.com",
 );
 
 $RegionId = 'cn-hangzhou';

@@ -1,5 +1,5 @@
 /** 问卷调查 **/
-$().ready(function() {
+$().ready(function () {
   let survey = '<div class="text-center" style="font-size: 85%;"><b>' +
     '<div class="mb-1"><a href="http://survey.jzeg.net/s/jMjUfeE/" target="_blank" class="text-decoration-none text-success">网站功能反馈</a></div>' +
     '<div class="mb-1"><a href="http://survey.jzeg.net/s/NbeMvqi/?user=site&repeat=1" target="_blank" class="text-decoration-none text-success">界面显示错误反馈表</a></div>' +

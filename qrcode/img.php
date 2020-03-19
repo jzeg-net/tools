@@ -1,11 +1,11 @@
 <?php
 
 if ($_POST && $_FILES) {
-    if (!($_FILES['qrcode_img']) || !($_POST['qrcode_title']) || !($_POST['qrcode_description']) || !($_POST['qrcode_password'])) {
-        die('参数错误');
-    }
+  if (!($_FILES['qrcode_img']) || !($_POST['qrcode_title']) || !($_POST['qrcode_description']) || !($_POST['qrcode_password'])) {
+    die('参数错误');
+  }
 } else {
-    die('方式错误');
+  die('方式错误');
 }
 
 
@@ -32,15 +32,15 @@ $qrcode_content = '111';
 $static = 'yes';
 
 $qrcode_data = array(
-    'img_path' => $img_path,
-    'title' => $title,
-    'description' => $description,
-    'category' => $category,
-    'identifier' => $identifier,
-    'img_md5' => $img_md5,
-    'qrcode_content' => $qrcode_content,
-    'password' => $password,
-    'static' => $static,
+  'img_path' => $img_path,
+  'title' => $title,
+  'description' => $description,
+  'category' => $category,
+  'identifier' => $identifier,
+  'img_md5' => $img_md5,
+  'qrcode_content' => $qrcode_content,
+  'password' => $password,
+  'static' => $static,
 );
 
 
