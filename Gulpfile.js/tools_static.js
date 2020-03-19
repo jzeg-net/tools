@@ -53,7 +53,7 @@ task(cleanCSS_index_css);
 task(cleanCSS_phone_number_css);
 task(cleanCSS_photo_info_css);
 
-task(watch_static);
+task(watch_tools_static);
 
 // Combined tasks
 // 合并任务
@@ -76,7 +76,7 @@ task("cleanCSS",
         cleanCSS_photo_info_css,
     )
 );
-task("minimize_local_static",
+task("minimize_tools_static",
     parallel(
         "terser",
         "cleanCSS",
@@ -84,7 +84,7 @@ task("minimize_local_static",
 );
 task("build_static_tools",
     parallel(
-        "minimize_local_static",
+        "minimize_tools_static",
     )
 );
 
@@ -206,7 +206,7 @@ function cleanCSS_photo_info_css(done) {
     done();
 }
 
-function watch_static(done) {
-    watch([tools_static_src_path + "**/*"], task("minimize_local_static"));
+function watch_tools_static(done) {
+    watch([tools_static_src_path + "**/*"], task("minimize_tools_static"));
     done();
 }
