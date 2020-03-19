@@ -1,4 +1,5 @@
-const config = require('./config.json'),
+const config_file = './config.json',
+    common_config = require(config_file),
     {task, src, dest, parallel, lastRun, watch} = require('gulp'),
     concat = require('gulp-concat'),
     footer = require('gulp-footer'),
@@ -13,27 +14,18 @@ const
     /** FunDebug **/
     fundebug_js_path = "./node_modules/fundebug-javascript/release/fundebug." + "*.*.*" + ".min.js",
     /** bootstrap-modal-js **/
-    bootstrap_modal_js_js_path = "./node_modules/bootstrap-modal-js/dist/bootstrap-modal-js.js",
-    bootstrap_modal_js_min_js_path = "./node_modules/bootstrap-modal-js/dist/bootstrap-modal-js.min.js",
+    bootstrap_modal_js_all_js_path = "./node_modules/bootstrap-modal-js/dist/*",
     /** bs-custom-file-input **/
-    bs_custom_file_input_dist_path = "./node_modules/bs-custom-file-input/dist/*",
+    bs_custom_file_input_all_js_path = "./node_modules/bs-custom-file-input/dist/*",
     /** js.cookie.js **/
-    js_cookie_min_js_path = "./node_modules/js-cookie/dist/js.cookie.min.js",
-    js_cookie_min_mjs_path = "./node_modules/js-cookie/dist/js.cookie.min.mjs",
+    js_cookie_all_js_path = "./node_modules/js-cookie/dist/js.cookie*",
     /** jquery **/
-    jquery_js_path = "./node_modules/jquery/dist/jquery.js",
-    jquery_min_js_path = "./node_modules/jquery/dist/jquery.min.js",
+    jquery_all_js_path = "./node_modules/jquery/dist/jquery*",
     /** popper.js **/
-    popper_js_path = "./node_modules/popper.js/dist/umd/popper.js",
-    popper_min_js_path = "./node_modules/popper.js/dist/umd/popper.min.js",
-    popper_js_map_path = "./node_modules/popper.js/dist/umd/popper.js.map",
-    popper_min_js_map_path = "./node_modules/popper.js/dist/umd/popper.min.js.map",
+    popper_all_umd_js_path = "./node_modules/popper.js/dist/umd/*",
     /** Bootstrap **/
     bootstrap_all_js_path = "./node_modules/bootstrap/dist/js/*",
-    bootstrap_css_path = "./node_modules/bootstrap/dist/css/bootstrap.css",
-    bootstrap_min_css_path = "./node_modules/bootstrap/dist/css/bootstrap.min.css",
-    bootstrap_css_map_path = "./node_modules/bootstrap/dist/css/bootstrap.css.map",
-    bootstrap_min_css_map = "./node_modules/bootstrap/dist/css/bootstrap.min.css.map",
+    bootstrap_all_css_path = "./node_modules/bootstrap/dist/css/*",
     /** fontawesome-free **/
     all_fontawesome_free_path = "./node_modules/@fortawesome/fontawesome-free/**/*",
     /** dayjs.js **/
@@ -41,18 +33,16 @@ const
     dayjs_min_js_path = "./node_modules/dayjs/dayjs.min.js",
     dayjs_locale_zh_cn_js_path = "./node_modules/dayjs/locale/zh-cn.js",
     /** animate.css **/
-    animate_css_path = "./node_modules/animate.css/animate.css",
-    animate_min_css_path = "./node_modules/animate.css/animate.min.css",
+    animate_all_css_path = "./node_modules/animate.css/animate.*css",
     /** hover.css **/
-    hover_min_css_path = "./node_modules/hover.css/css/hover-min.css",
+    hover_all_css_path = "./node_modules/hover.css/css/hover*",
     /** hamburgers.css **/
-    hamburgers_css_path = "./node_modules/hamburgers/dist/hamburgers.css",
-    hamburgers_min_css_path = "./node_modules/hamburgers/dist/hamburgers.min.css",
+    hamburgers_all_css_path = "./node_modules/hamburgers/dist/*.css",
     /** node-qrcode **/
     qrcode_build_path = "./node_modules/qrcode/build/*",
     /** bootstrap-colorpicker.js **/
-    bootstrap_color_picker_js_path = "./node_modules/bootstrap-colorpicker/dist/js/*",
-    bootstrap_color_picker_css_path = "./node_modules/bootstrap-colorpicker/dist/css/*",
+    bootstrap_color_picker_all_js_path = "./node_modules/bootstrap-colorpicker/dist/js/*",
+    bootstrap_color_picker_all_css_path = "./node_modules/bootstrap-colorpicker/dist/css/*",
     /** clipboard.js **/
     clipboard_min_js_path = "./node_modules/clipboard/dist/clipboard.min.js";
 
@@ -101,7 +91,7 @@ task("add_footer",
         add_footer_funDebug_api,
     )
 );
-task("build_static_common",
+task("build_common",
     parallel(
         "add_footer",
         "copy_common",
@@ -116,13 +106,13 @@ function copy_fontawesome_free(done) {
 }
 
 function copy_bootstrap_modal_js(done) {
-    src([bootstrap_modal_js_js_path, bootstrap_modal_js_min_js_path], {since: lastRun(copy_bootstrap_modal_js)})
+    src([bootstrap_modal_js_all_js_path], {since: lastRun(copy_bootstrap_modal_js)})
         .pipe(dest(static_js));
     done();
 }
 
 function copy_bs_custom_file_input(done) {
-    src([bs_custom_file_input_dist_path], {since: lastRun(copy_bs_custom_file_input)})
+    src([bs_custom_file_input_all_js_path], {since: lastRun(copy_bs_custom_file_input)})
         .pipe(dest(static_js));
     done();
 }
@@ -141,9 +131,9 @@ function copy_clipboard(done) {
 }
 
 function copy_bootstrap_colorPicker(done) {
-    src([bootstrap_color_picker_js_path], {since: lastRun(copy_bootstrap_colorPicker)})
+    src([bootstrap_color_picker_all_js_path], {since: lastRun(copy_bootstrap_colorPicker)})
         .pipe(dest(static_js));
-    src([bootstrap_color_picker_css_path], {since: lastRun(copy_bootstrap_colorPicker)})
+    src([bootstrap_color_picker_all_css_path], {since: lastRun(copy_bootstrap_colorPicker)})
         .pipe(dest(static_css));
     done();
 }
@@ -157,50 +147,50 @@ function copy_qrcode(done) {
 function copy_bootstrap(done) {
     src([bootstrap_all_js_path], {since: lastRun(copy_bootstrap)})
         .pipe(dest(static_js));
-    src([bootstrap_css_path, bootstrap_min_css_path, bootstrap_css_map_path, bootstrap_min_css_map], {since: lastRun(copy_bootstrap)})
+    src([bootstrap_all_css_path], {since: lastRun(copy_bootstrap)})
         .pipe(dest(static_css));
     done();
 }
 
 function copy_animate_css(done) {
-    src([animate_css_path, animate_min_css_path], {since: lastRun(copy_animate_css)})
+    src([animate_all_css_path], {since: lastRun(copy_animate_css)})
         .pipe(dest(static_css));
     done();
 }
 
 function copy_hover_css(done) {
-    src([hover_min_css_path], {since: lastRun(copy_hover_css)})
+    src([hover_all_css_path], {since: lastRun(copy_hover_css)})
         .pipe(rename("hover.min.css"))
         .pipe(dest(static_css));
     done();
 }
 
 function copy_hamburgers_css(done) {
-    src([hamburgers_css_path, hamburgers_min_css_path], {since: lastRun(copy_hamburgers_css)})
+    src([hamburgers_all_css_path], {since: lastRun(copy_hamburgers_css)})
         .pipe(dest(static_css));
     done();
 }
 
 function copy_popper(done) {
-    src([popper_js_path, popper_min_js_path, popper_js_map_path, popper_min_js_map_path], {since: lastRun(copy_popper)})
+    src([popper_all_umd_js_path], {since: lastRun(copy_popper)})
         .pipe(dest(static_js));
     done();
 }
 
 function copy_jquery(done) {
-    src([jquery_js_path, jquery_min_js_path], {since: lastRun(copy_jquery)})
+    src([jquery_all_js_path], {since: lastRun(copy_jquery)})
         .pipe(dest(static_js));
     done();
 }
 
 function copy_js_cookie(done) {
-    src([js_cookie_min_js_path, js_cookie_min_mjs_path], {since: lastRun(copy_js_cookie)})
+    src([js_cookie_all_js_path], {since: lastRun(copy_js_cookie)})
         .pipe(dest(static_js));
     done();
 }
 
 function add_footer_funDebug_api(done) {
-    const add_text = '\nfundebug.init({apikey:"' + config.fundebug_api_key + '"});\n';
+    const add_text = '\nfundebug.init({apikey:"' + common_config.fundebug_api_key + '"});\n';
     src([fundebug_js_path], {since: lastRun(add_footer_funDebug_api)})
         .pipe(footer(add_text))
         .pipe(rename('fundebug.min.js'))
@@ -208,6 +198,7 @@ function add_footer_funDebug_api(done) {
     done();
 }
 
-function watch_config_json() {
-    return watch(['./config.json'], task(add_footer_funDebug_api));
+function watch_config_json(done) {
+    watch([config_file], task('add_footer_funDebug_api'));
+    done();
 }

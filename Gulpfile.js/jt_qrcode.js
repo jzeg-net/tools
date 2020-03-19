@@ -52,7 +52,7 @@ task("minimize_jt_qrcode",
         "cleanCSS_jt_qrcode",
     )
 );
-task("build_static_jt_qrcode",
+task("build_jt_qrcode",
     parallel(
         "minimize_jt_qrcode",
         "copy_jt_qrcode",
@@ -95,6 +95,6 @@ function cleanCSS_jt_qrcode(done) {
 }
 
 function watch_jt_qrcode(done) {
-    watch([jt_qrcode_js_path, jt_qrcode_css_path], task("build_static_jt_qrcode"));
+    watch([jt_qrcode_js_path, jt_qrcode_css_path], task("build_jt_qrcode"));
     done();
 }

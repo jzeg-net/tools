@@ -54,7 +54,7 @@ task("minimize_sms",
     "cleanCSS_sms",
   )
 );
-task("build_static_sms",
+task("build_sms",
   parallel(
     "minimize_sms",
     "copy_sms",
@@ -91,6 +91,6 @@ function cleanCSS_sms(done) {
 }
 
 function watch_sms(done) {
-  watch([sms_index_js_path, sms_index_css_path, sms_query_js_path, sms_query_css_path], task("build_static_sms"));
+  watch([sms_index_js_path, sms_index_css_path, sms_query_js_path, sms_query_css_path], task("build_sms"));
   done();
 }
