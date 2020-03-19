@@ -1,39 +1,43 @@
 {
   "name": "jzeg_tools",
-  "description": "小工具页面",
-  "version": "0.0.3",
+  "description": "杰格网便民小工具",
+  "version": "0.0.4",
   "main": "",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zhangchenglin/tools.git"
+    "url": "git+https://github.com/jzeg-net/tools.git"
+  },
+  "license": "AGPL-3.0",
+  "homepage": "https://github.com/jzeg-net/tools",
+  "bugs": {
+    "url": "https://github.com/jzeg-net/tools/issues"
   },
   "keywords": [
+    "杰格网便民小工具",
     "JZEG"
   ],
   "author": {
     "name": "张成林",
-    "email": "admin@pshelp.cn",
+    "email": "admin@jzeg.net",
     "url": "https://github.com/zhangchenglin"
   },
   "maintainers": [
-    "张成林 <admin@pshelp.cn> (https://zhangchenglin.github.io)"
+    "张成林 <admin@jzeg.net> (https://zhangchenglin.github.io)"
   ],
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/zhangchenglin/tools/issues"
-  },
-  "homepage": "https://github.com/zhangchenglin/tools",
   "scripts": {
-    "on_first_use": "npm run install_nrm_use_taobao && npm run install_ncu",
+    "run_only_on_first_use": "npm run install_nrm_use_taobao && npm run install_ncu",
     "default": "npm run build",
-    "build": "npm i && npm run build_static",
-    "watch": "npm run watch_static",
+    "build": "npm i && npm run build_npm && npm run build_composer",
+    "build_npm": "npm i && npm run gulp_static",
+    "build_composer": "npm run composer_install",
+    "watch": "npm run watch_change",
+    "lint": "npm run lint_tools_static_src/js",
     "lint_tools_static_src/js": "npx eslint tools_static_src/js",
     "copy": "gulp add_footer copy",
-    "minimize_local_static": "gulp minimize_local_static",
-    "build_static": "gulp build_static",
-    "watch_static": "gulp watch_static",
+    "gulp_static": "gulp build_static",
     "watch_change": "gulp watch_change",
+    "composer_install": "composer i",
+    "composer_update": "composer update",
     "install_nrm_use_taobao": "npm i -g nrm --registry=https://registry.npm.taobao.org && nrm use taobao && nrm ls",
     "install_ncu": "npm i -g npm-check-updates"
   },
@@ -71,7 +75,7 @@
     "qrcode": "^1.4.4"
   },
   "engines": {
-    "node": "^10.18.0 || ^12.14.0 || ^13.4.0",
+    "node": "^10.19.0 || ^12.16.1 || ^13.11.0",
     "npm": "^6.13.4"
   },
   "os": [],
