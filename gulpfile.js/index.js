@@ -1,4 +1,5 @@
 require('./common');
+require('./user');
 require('./sms');
 require('./tools_static');
 require('./jt_qrcode');
@@ -9,6 +10,7 @@ const {task, series, parallel} = require('gulp');
 // 合并任务
 task("build_static",
   series(
+    "build_user",
     "build_sms",
     "build_tools",
     "build_common",
@@ -17,6 +19,7 @@ task("build_static",
 );
 task('watch_change',
   parallel(
+    'watch_user',
     'watch_sms',
     'watch_tools',
     'watch_config_json',
@@ -25,6 +28,7 @@ task('watch_change',
 );
 task('copy',
   parallel(
+    'copy_user',
     'copy_sms',
     'copy_common',
     'copy_tools',

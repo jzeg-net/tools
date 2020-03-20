@@ -1,5 +1,21 @@
 <?php
 
+//namespace JZEG_NET\Member\Sms\SendSms;
+
+if (!defined('JZEG_NET_SMS')) die();
+
+require_once dirname(dirname(__DIR__)) . '/vendor/autoload.php';
+global $accessKeyId,
+       $accessSecret,
+       $request_json,
+       $RegionId,
+       $PhoneNumbers,
+       $SendDate,
+       $PageSize,
+       $CurrentPage,
+       $BizId,
+       $SignName;
+
 use AlibabaCloud\Client\AlibabaCloud;
 use AlibabaCloud\Client\Exception\ClientException;
 use AlibabaCloud\Client\Exception\ServerException;
@@ -7,32 +23,34 @@ use AlibabaCloud\Client\Exception\ServerException;
 // Download：https://github.com/aliyun/openapi-sdk-php
 // Usage：https://github.com/aliyun/openapi-sdk-php/blob/master/README.md
 
-AlibabaCloud::accessKeyClient('<accessKeyId>', '<accessSecret>')
-    ->regionId('cn-hangzhou')
-    ->asDefaultClient();
+AlibabaCloud::accessKeyClient($accessKeyId, $accessSecret)
+  ->regionId($RegionId)
+  ->asDefaultClient();
 
 try {
-    $result = AlibabaCloud::rpc()
-        ->product('Dysmsapi')
-        ->scheme('https')
-        ->version('2017-05-25')
-        ->action('QuerySendDetails')
-        ->method('POST')
-        ->host('dysmsapi.aliyuncs.com')
-        ->options([
-            'query' => [
-                'RegionId' => "cn-hangzhou",
-                'PhoneNumber' => "15227731266",
-                'SendDate' => "20200318",
-                'PageSize' => "10",
-                'CurrentPage' => "1",
-                'BizId' => "0",
-            ],
-        ])
-        ->request();
-    print_r($result->toArray());
+  $request_result = AlibabaCloud::rpc()
+    ->product($request_json['product'])
+    ->scheme($request_json['scheme'])
+    ->version($request_json['version'])
+    ->action($request_json['action'])
+    ->method($request_json['method'])
+    ->host($request_json['host'])
+    ->options([
+      'query' => [
+        'RegionId' => $RegionId,
+        'PhoneNumbers' => $PhoneNumbers,
+        'SendDate' => $SendDate,
+        'PageSize' => $PageSize,
+        'CurrentPage' => $CurrentPage,
+        'BizId' => $BizId,
+      ],
+    ])
+    ->request();
+  $sms_request_result = $request_result->toArray();
 } catch (ClientException $e) {
-    echo $e->getErrorMessage() . PHP_EOL;
+  $sms_request_result['error']['ClientException'] = $e->getErrorMessage() . PHP_EOL;
 } catch (ServerException $e) {
-    echo $e->getErrorMessage() . PHP_EOL;
+  $sms_request_result['error']['ServerException'] = $e->getErrorMessage() . PHP_EOL;
 }
+
+return $sms_request_result;

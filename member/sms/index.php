@@ -4,9 +4,9 @@ require_once dirname(dirname(__DIR__)) . '/header.php';
 if (!defined('JZEG_NET')) die();
 ?>
   <link rel="stylesheet" href="/static/css/sms_index.min.css">
-  <div class="py-2 container border" id="jt_sms_send">
+  <div class="py-2 container" id="jt_sms_send">
     <div class="mb-2 font-weight-bolder">向用户发送短信提示</div>
-    <form action="/member/sms/send.php" method="post">
+    <form class="px-3 py-2 rounded border" action="/member/sms/send.php" method="post" enctype="multipart/form-data">
       <div class="form-row form-group">
         <div class="col-12 col-md-6 mb-2 mb-md-0 input-group">
           <div class="input-group-prepend">

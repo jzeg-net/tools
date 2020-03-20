@@ -24,11 +24,11 @@ $().ready(function () {
   if (jt_sms_send) {
     let jt_sms_send_submit = document.querySelector('#jt_sms_send_submit');
     jt_sms_send_submit.addEventListener('click', function (e) {
-      let aaa = confirm('您确认要发送短信吗？');
+      let aaa = confirm('您确认要向用户发送短信吗？');
       if (true === aaa) {
-        alert('您已经确认发送，立刻发送短信。');
+        alert('您已经确认发送，短信将发送。');
       } else {
-        alert('您已经取消发送，发送已经取消。');
+        alert('您已经取消发送，发送将取消。');
         e.preventDefault();
       }
     })
