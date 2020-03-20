@@ -23,9 +23,13 @@ use AlibabaCloud\Client\Exception\ServerException;
 // Download：https://github.com/aliyun/openapi-sdk-php
 // Usage：https://github.com/aliyun/openapi-sdk-php/blob/master/README.md
 
-AlibabaCloud::accessKeyClient($accessKeyId, $accessSecret)
-  ->regionId($RegionId)
-  ->asDefaultClient();
+try {
+  AlibabaCloud::accessKeyClient($accessKeyId, $accessSecret)
+    ->regionId($RegionId)
+    ->asDefaultClient();
+} catch (ClientException $e) {
+  $sms_request_result['error']['ClientException'] = $e->getErrorMessage() . PHP_EOL;
+}
 
 try {
   $request_result = AlibabaCloud::rpc()

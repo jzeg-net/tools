@@ -1,6 +1,6 @@
 <?php
 
-//namespace JZEG_NET\Member\Sms\SendSms;
+//namespace JZEG_NET\Member\Sms\QuerySendDetails;
 
 if (!defined('JZEG_NET_SMS')) die();
 
@@ -9,12 +9,11 @@ global $accessKeyId,
        $accessSecret,
        $request_json,
        $RegionId,
-       $PhoneNumbers,
+       $PhoneNumber,
        $SendDate,
        $PageSize,
        $CurrentPage,
-       $BizId,
-       $SignName;
+       $BizId;
 
 use AlibabaCloud\Client\AlibabaCloud;
 use AlibabaCloud\Client\Exception\ClientException;
@@ -23,9 +22,13 @@ use AlibabaCloud\Client\Exception\ServerException;
 // Download：https://github.com/aliyun/openapi-sdk-php
 // Usage：https://github.com/aliyun/openapi-sdk-php/blob/master/README.md
 
-AlibabaCloud::accessKeyClient($accessKeyId, $accessSecret)
-  ->regionId($RegionId)
-  ->asDefaultClient();
+try {
+  AlibabaCloud::accessKeyClient($accessKeyId, $accessSecret)
+    ->regionId($RegionId)
+    ->asDefaultClient();
+} catch (ClientException $e) {
+  $sms_request_result['error']['ClientException'] = $e->getErrorMessage() . PHP_EOL;
+}
 
 try {
   $request_result = AlibabaCloud::rpc()
@@ -38,7 +41,7 @@ try {
     ->options([
       'query' => [
         'RegionId' => $RegionId,
-        'PhoneNumbers' => $PhoneNumbers,
+        'PhoneNumber' => $PhoneNumber,
         'SendDate' => $SendDate,
         'PageSize' => $PageSize,
         'CurrentPage' => $CurrentPage,

@@ -32,7 +32,7 @@ if (!defined('JZEG_NET')) die();
           <div class="input-group-prepend">
             <label class="input-group-text" for="jt_sms_query_BizId">BizId</label>
           </div>
-          <input type="number" class="form-control" name="jt_sms_query_BizId"
+          <input type="text" class="form-control" name="jt_sms_query_BizId"
                  id="jt_sms_query_BizId" placeholder="BizId">
         </div>
         <div class="form-text small text-muted">
@@ -42,10 +42,10 @@ if (!defined('JZEG_NET')) die();
       <div class="form-group">
         <div class="input-group">
           <div class="input-group-prepend">
-            <label class="input-group-text" for="jt_sms_query_PhoneNumbers">号码</label>
+            <label class="input-group-text" for="jt_sms_query_PhoneNumber">号码</label>
           </div>
-          <input type="number" class="form-control" name="jt_sms_query_PhoneNumbers"
-                 id="jt_sms_query_PhoneNumbers" placeholder="纯手机号码" required>
+          <input type="number" class="form-control" name="jt_sms_query_PhoneNumber"
+                 id="jt_sms_query_PhoneNumber" placeholder="纯手机号码" required>
         </div>
         <div class="form-text small text-muted">
           <span class="small">单个手机号码</span>

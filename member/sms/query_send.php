@@ -8,8 +8,8 @@ if (isset($_POST['_token'])) {
   die();
 }
 
-if (!($_POST['jt_sms_query_accessKeyId']) || !($_POST['jt_sms_query_accessSecret']) || !($_POST['jt_sms_query_PhoneNumbers']) || !($_POST['jt_sms_query_SendDate']) || !($_POST['jt_sms_query_PageSize_number']) || !($_POST['jt_sms_query_CurrentPage_number']) || !($_POST['jt_sms_query_BizId'])) {
-//if (!($_POST['jt_sms_query_accessKeyId']) || !($_POST['jt_sms_query_accessSecret']) || !($_POST['jt_sms_query_PhoneNumbers']) || !($_POST['jt_sms_query_SendDate']) || !($_POST['jt_sms_query_PageSize_number']) || !($_POST['jt_sms_query_CurrentPage_number'])) {
+//if (!($_POST['jt_sms_query_accessKeyId']) || !($_POST['jt_sms_query_accessSecret']) || !($_POST['jt_sms_query_PhoneNumber']) || !($_POST['jt_sms_query_SendDate']) || !($_POST['jt_sms_query_PageSize_number']) || !($_POST['jt_sms_query_CurrentPage_number']) || !($_POST['jt_sms_query_BizId'])) {
+if (!($_POST['jt_sms_query_accessKeyId']) || !($_POST['jt_sms_query_accessSecret']) || !($_POST['jt_sms_query_PhoneNumber']) || !($_POST['jt_sms_query_SendDate']) || !($_POST['jt_sms_query_PageSize_number']) || !($_POST['jt_sms_query_CurrentPage_number'])) {
   die();
 }
 
@@ -24,7 +24,7 @@ $accessSecret = $_POST['jt_sms_query_accessSecret'];
 $BizId = $_POST['jt_sms_query_BizId'];
 
 //接收短信的手机号码,手机号码之间以英文逗号（,）分隔。上限为1000个手机号码。
-$PhoneNumbers = $_POST['jt_sms_query_PhoneNumbers'];
+$PhoneNumber = $_POST['jt_sms_query_PhoneNumber'];
 //短信发送日期，支持查询最近30天的记录。格式为yyyyMMdd，例如20181225。
 $SendDate = $_POST['jt_sms_query_SendDate'];
 //分页查看发送记录，指定每页显示的短信记录数量。取值范围为1~50。
@@ -85,14 +85,16 @@ global $sms_request_result,
 $result['sms_request'] = $sms_request_result;
 $result['database'] = $database_result;
 
-if (!isset($result['database']['error']) && (!is_null($result['sms_request']['BizId']) && 'OK' === $result['sms_request']['Code'])) {
+//if (!isset($result['database']['error']) && ('OK' === $result['sms_request']['Code'] && 'OK' === $result['sms_request']['Message'])) {
+
+if ('OK' === $result['sms_request']['Code'] && 'OK' === $result['sms_request']['Message']) {
   $result['status'] = true;
 } else {
-  if (isset($result['database']['error'])) {
-    $result['status'] = false;
-    $result['error']['type'][] = 'database';
-  }
-  if ('OK' !== $result['sms_request']['Code']) {
+//  if (isset($result['database']['error'])) {
+//    $result['status'] = false;
+//    $result['error']['type'][] = 'database';
+//  }
+  if ('OK' !== $result['sms_request']['Code'] || 'OK' !== $result['sms_request']['Message']) {
     $result['status'] = false;
     $result['error']['type'][] = 'sms_request';
   }
