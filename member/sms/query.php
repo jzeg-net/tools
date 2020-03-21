@@ -6,8 +6,7 @@ if (!defined('JZEG_NET')) die();
   <link rel="stylesheet" href="/static/css/sms_query.min.css">
   <div class="py-2 container" id="jt_sms_query">
     <div class="mb-2 font-weight-bolder">查询向用户发送的短信内容</div>
-    <form class="mb-2 px-3 py-2 rounded border" action="/member/sms/query_send.php" method="post"
-          enctype="multipart/form-data">
+    <div class="mb-2 px-3 py-2 rounded border">
       <div class="form-row form-group">
         <div class="col-12 col-md-6 mb-2 mb-md-0 input-group">
           <div class="input-group-prepend">
@@ -32,8 +31,7 @@ if (!defined('JZEG_NET')) die();
           <div class="input-group-prepend">
             <label class="input-group-text" for="jt_sms_query_BizId">BizId</label>
           </div>
-          <input type="text" class="form-control" name="jt_sms_query_BizId"
-                 id="jt_sms_query_BizId" placeholder="BizId">
+          <input type="text" class="form-control" name="jt_sms_query_BizId" id="jt_sms_query_BizId" placeholder="BizId">
         </div>
         <div class="form-text small text-muted">
           <span class="small">发送回执ID，即发送流水号</span>
@@ -44,8 +42,8 @@ if (!defined('JZEG_NET')) die();
           <div class="input-group-prepend">
             <label class="input-group-text" for="jt_sms_query_PhoneNumber">号码</label>
           </div>
-          <input type="number" class="form-control" name="jt_sms_query_PhoneNumber"
-                 id="jt_sms_query_PhoneNumber" placeholder="纯手机号码" required>
+          <input type="number" class="form-control" name="jt_sms_query_PhoneNumber" id="jt_sms_query_PhoneNumber"
+                 placeholder="纯手机号码" required>
         </div>
         <div class="form-text small text-muted">
           <span class="small">单个手机号码</span>
@@ -56,8 +54,8 @@ if (!defined('JZEG_NET')) die();
           <div class="input-group-prepend">
             <label class="input-group-text" for="jt_sms_query_SendDate">发送日期</label>
           </div>
-          <input type="date" class="form-control" name="jt_sms_query_SendDate" id="jt_sms_query_SendDate"
-                 value="2020-03-01" required>
+          <input type="text" class="form-control" name="jt_sms_query_SendDate" id="jt_sms_query_SendDate"
+                 value="20200318" required>
         </div>
         <div class="form-text small text-muted">
           <span class="small">发送日期</span>
@@ -69,7 +67,7 @@ if (!defined('JZEG_NET')) die();
             <div class="input-group-prepend">
               <label class="input-group-text" for="jt_sms_query_PageSize_number">记录数量</label>
             </div>
-            <input type="number" class="form-control text-right" min="1" max="50" step="1" value="1"
+            <input type="number" class="form-control text-right" min="1" max="50" step="1" value="25"
                    name="jt_sms_query_PageSize_number" id="jt_sms_query_PageSize_number">
             <div class="input-group-append">
               <span class="input-group-text">条</span>
@@ -78,9 +76,12 @@ if (!defined('JZEG_NET')) die();
           <div class="form-text small text-muted">
             <span>分页查看发送记录，指定每页显示的短信记录数量</span>
           </div>
-          <label class="sr-only" for="jt_sms_query_PageSize_range">记录数量滑动条</label>
-          <input type="range" class="custom-range" min="1" max="50" step="1" value="1"
-                 id="jt_sms_query_PageSize_range">
+          <div>
+            <label class="sr-only" for="jt_sms_query_PageSize_range">记录数量滑动条</label>
+            <input type="range" class="custom-range" min="1" max="50" step="1" value="25"
+
+                   id="jt_sms_query_PageSize_range">
+          </div>
         </div>
         <div class="col-12 col-md-6 mb-2">
           <div class="mb-1 input-group">
@@ -99,19 +100,36 @@ if (!defined('JZEG_NET')) die();
           <div class="form-text small text-muted">
             <span>分页查看发送记录，指定发送记录的的当前页码。</span>
           </div>
-          <label class="sr-only" for="jt_sms_query_CurrentPage_range">记录数量滑动条</label>
-          <input type="range" class="custom-range" min="1" max="10" step="1" value="1"
-                 id="jt_sms_query_CurrentPage_range">
+          <div>
+            <label class="sr-only" for="jt_sms_query_CurrentPage_range">记录数量滑动条</label>
+            <input type="range" class="custom-range" min="1" max="10" step="1" value="1"
+                   id="jt_sms_query_CurrentPage_range">
+          </div>
         </div>
       </div>
-      <div class="form-group text-center">
+      <div class="form-group d-flex justify-content-center">
         <input type="hidden" name="_token" id="_token">
-        <button type="submit" class="btn btn-outline-success" id="jt_sms_query_submit">查询</button>
+        <button type="button" class="btn btn-outline-success" id="jt_sms_query_submit">查询</button>
       </div>
-    </form>
+    </div>
     <div class="mb-2">
       <div class="font-weight-bolder">查询结果</div>
-      <div class="px-3 py-2 rounded border small" id="jt_sms_query_smsContent">发送的短信内容</div>
+      <div class="mb-2 px-3 py-2 rounded border small" id="jt_sms_query_smsContent">
+        发送的短信内容
+        <nav id="jt_sms_query_smsContent_nav" aria-label="页面导航">
+          <ul class="pagination justify-content-center pagination-sm">
+            <li class="page-item">
+              <a class="page-link" href="javascript:" aria-label="上一页"><span aria-hidden="true">&laquo;</span></a>
+            </li>
+            <li class="page-item active"><a class="page-link" href="javascript:">1</a></li>
+            <li class="page-item"><a class="page-link" href="javascript:">2</a></li>
+            <li class="page-item"><a class="page-link" href="javascript:">3</a></li>
+            <li class="page-item">
+              <a class="page-link" href="javascript:" aria-label="下一页"><span aria-hidden="true">&raquo;</span></a>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </div>
   </div>
   <div class="d-none">
