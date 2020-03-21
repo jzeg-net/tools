@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1477aa9e347ac9d1a2a720969a00679b",
+    "content-hash": "773ad4dc605c721402f893608a53dfb7",
     "packages": [
         {
             "name": "adbario/php-dot-notation",
@@ -150,16 +150,16 @@
         },
         {
             "name": "alibabacloud/sdk",
-            "version": "1.8.180",
+            "version": "1.8.182",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aliyun/openapi-sdk-php.git",
-                "reference": "d44dd33336c7de2edefd81b1f455987346c4d030"
+                "reference": "e9a1cef4d215352505548c42b9a60e7465f57103"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aliyun/openapi-sdk-php/zipball/d44dd33336c7de2edefd81b1f455987346c4d030",
-                "reference": "d44dd33336c7de2edefd81b1f455987346c4d030",
+                "url": "https://api.github.com/repos/aliyun/openapi-sdk-php/zipball/e9a1cef4d215352505548c42b9a60e7465f57103",
+                "reference": "e9a1cef4d215352505548c42b9a60e7465f57103",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -386,7 +386,7 @@
                 "library",
                 "sdk"
             ],
-            "time": "2020-03-18T09:39:17+00:00"
+            "time": "2020-03-19T08:48:14+00:00"
         },
         {
             "name": "bacon/bacon-qr-code",
@@ -5180,7 +5180,8 @@
     "platform": {
         "php": ">=7.3",
         "ext-json": "*",
-        "ext-gd": "*"
+        "ext-gd": "*",
+        "ext-mbstring": "*"
     },
     "platform-dev": [],
     "plugin-api-version": "1.1.0"
