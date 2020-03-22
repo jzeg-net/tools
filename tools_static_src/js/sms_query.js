@@ -45,7 +45,24 @@ $().ready(function () {
 $().ready(function () {
   let jt_sms_query = document.querySelector('#jt_sms_query');
   if (jt_sms_query) {
-    let jt_sms_query_action = '/member/sms/query_send.php';
+    let jt_sms_query_submit = document.querySelector('#jt_sms_query_submit');
+    let jt_sms_query_smsContent = document.querySelector('#jt_sms_query_smsContent');
+
+    jt_sms_query_submit.addEventListener('click', function (e) {
+      let jt_sms_query_action = '/member/sms/query_send.php';
+      let e_target = e.target;
+      let x = {
+        "e_target": e_target,
+        "url": jt_sms_query_action,
+      };
+      let data = check_data(x);
+      data['result_element'] = jt_sms_query_smsContent;
+      add_spinner_icon(e_target);
+      ajax_submit(data);
+    });
+  }
+
+  function check_data(ajax_data) {
     let _token = document.querySelector('#_token');
     let jt_sms_query_accessKeyId = document.querySelector('#jt_sms_query_accessKeyId');
     let jt_sms_query_accessSecret = document.querySelector('#jt_sms_query_accessSecret');
@@ -54,32 +71,19 @@ $().ready(function () {
     let jt_sms_query_SendDate = document.querySelector('#jt_sms_query_SendDate');
     let jt_sms_query_PageSize_number = document.querySelector('#jt_sms_query_PageSize_number');
     let jt_sms_query_CurrentPage_number = document.querySelector('#jt_sms_query_CurrentPage_number');
-    let jt_sms_query_submit = document.querySelector('#jt_sms_query_submit');
 
-    jt_sms_query_submit.addEventListener('click', function () {
-      let confirm_options = {
-        'text': '您确认要查询短信内容吗？',
-        'true': '您已经确认查询，查询将开始。？',
-        'false': '您已经取消查询，查询将取1消。',
-      };
-      // let confirm = form_confirm(confirm_options);
-      // if (form_confirm(confirm_options)) {
-      let data = check_data();
-      ajax_submit(jt_sms_query_action, data);
-      // }
-    });
+    let token = _token.value;
+    let accessKeyId = jt_sms_query_accessKeyId.value;
+    let accessSecret = jt_sms_query_accessSecret.value;
+    let BizId = jt_sms_query_BizId.value;
+    let PhoneNumber = jt_sms_query_PhoneNumber.value;
+    let SendDate = jt_sms_query_SendDate.value;
+    let PageSize_number = jt_sms_query_PageSize_number.value;
+    let CurrentPage_number = jt_sms_query_CurrentPage_number.value;
 
-    function check_data() {
-      let token = _token.value;
-      let accessKeyId = jt_sms_query_accessKeyId.value;
-      let accessSecret = jt_sms_query_accessSecret.value;
-      let BizId = jt_sms_query_BizId.value;
-      let PhoneNumber = jt_sms_query_PhoneNumber.value;
-      let SendDate = jt_sms_query_SendDate.value;
-      let PageSize_number = jt_sms_query_PageSize_number.value;
-      let CurrentPage_number = jt_sms_query_CurrentPage_number.value;
-
-      return {
+    return {
+      'ajax': ajax_data,
+      'data': {
         '_token': token,
         'jt_sms_query_accessKeyId': accessKeyId,
         'jt_sms_query_accessSecret': accessSecret,
@@ -88,34 +92,30 @@ $().ready(function () {
         'jt_sms_query_SendDate': SendDate,
         'jt_sms_query_PageSize_number': PageSize_number,
         'jt_sms_query_CurrentPage_number': CurrentPage_number,
-      };
-    }
-
-    function ajax_submit(query_url, query_data) {
-      $.ajax({
-        type: 'post',
-        url: query_url,
-        data: query_data,
-        dataType: 'json',
-        success: function (data) {
-          console.log(data);
-        },
-        error: function (error) {
-          console.log(error);
-        },
-      });
-    }
-
-    function form_confirm(options = {}) {
-      let confirm = confirm(options['text']);
-      if (true === confirm) {
-        alert(options['true']);
-        return true;
-      } else {
-        alert(options['false']);
-        return false;
-      }
-    }
-
+      },
+    };
   }
+
+  function ajax_submit(query_data) {
+    $.ajax({
+      type: 'post',
+      url: query_data['ajax']['url'],
+      data: query_data['data'],
+      dataType: 'json',
+      success: function (data) {
+        console.log(data);
+        ajax_result_success(data, query_data.result_element);
+        remove_spinner_icon(query_data['ajax']['e_target']);
+      },
+      error: function (error) {
+        console.log(error);
+        remove_spinner_icon(query_data['ajax']['e_target']);
+      },
+    });
+  }
+
+  function ajax_result_success(result_data, element) {
+    element.innerHTML = JSON.stringify(result_data);
+  }
+
 });
