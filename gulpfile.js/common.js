@@ -26,6 +26,14 @@ const
   /** Bootstrap **/
   bootstrap_all_js_path = "./node_modules/bootstrap/dist/js/*",
   bootstrap_all_css_path = "./node_modules/bootstrap/dist/css/*",
+  /** bootstrap-table **/
+  bootstrap_table_js_path = "./node_modules/bootstrap-table/dist/bootstrap-table.js",
+  bootstrap_table_js_min_path = "./node_modules/bootstrap-table/dist/bootstrap-table.min.js",
+  bootstrap_table_css_path = "./node_modules/bootstrap-table/dist/bootstrap-table.css",
+  bootstrap_table_css_min_path = "./node_modules/bootstrap-table/dist/bootstrap-table.min.css",
+  bootstrap_table_all_locale_js_path = "./node_modules/bootstrap-table/dist/locale/*",
+  bootstrap_table_zh_CN_js_path = "./node_modules/bootstrap-table/dist/locale/bootstrap-table-zh-CN.js",
+  bootstrap_table_zh_CN_min_js_path = "./node_modules/bootstrap-table/dist/locale/bootstrap-table-zh-CN.min.js",
   /** fontawesome-free **/
   all_fontawesome_free_path = "./node_modules/@fortawesome/fontawesome-free/**/*",
   /** dayjs.js **/
@@ -35,7 +43,9 @@ const
   /** animate.css **/
   animate_all_css_path = "./node_modules/animate.css/animate.*css",
   /** hover.css **/
-  hover_all_css_path = "./node_modules/hover.css/css/hover*",
+  hover_css_path = "./node_modules/hover.css/css/hover.css",
+  hover_css_map_path = "./node_modules/hover.css/css/hover.css.map",
+  hover_min_css_path = "./node_modules/hover.css/css/hover-min.css",
   /** hamburgers.css **/
   hamburgers_all_css_path = "./node_modules/hamburgers/dist/*.css",
   /** node-qrcode **/
@@ -52,6 +62,7 @@ task(copy_js_cookie);
 task(copy_jquery);
 task(copy_popper);
 task(copy_bootstrap);
+task(copy_bootstrap_table);
 task(copy_animate_css);
 task(copy_hover_css);
 task(copy_hamburgers_css);
@@ -75,6 +86,7 @@ task("copy_common",
     copy_jquery,
     copy_popper,
     copy_bootstrap,
+    copy_bootstrap_table,
     copy_animate_css,
     copy_hover_css,
     copy_hamburgers_css,
@@ -152,6 +164,14 @@ function copy_bootstrap(done) {
   done();
 }
 
+function copy_bootstrap_table(done) {
+  src([bootstrap_table_js_path,bootstrap_table_js_min_path,bootstrap_table_all_locale_js_path,bootstrap_table_zh_CN_js_path,bootstrap_table_zh_CN_min_js_path,], {since: lastRun(copy_bootstrap_table)})
+    .pipe(dest(static_js));
+  src([bootstrap_table_css_path,bootstrap_table_css_min_path], {since: lastRun(copy_bootstrap_table)})
+    .pipe(dest(static_css));
+  done();
+}
+
 function copy_animate_css(done) {
   src([animate_all_css_path], {since: lastRun(copy_animate_css)})
     .pipe(dest(static_css));
@@ -159,8 +179,10 @@ function copy_animate_css(done) {
 }
 
 function copy_hover_css(done) {
-  src([hover_all_css_path], {since: lastRun(copy_hover_css)})
+  src([hover_min_css_path], {since: lastRun(copy_hover_css)})
     .pipe(rename("hover.min.css"))
+    .pipe(dest(static_css));
+  src([hover_css_path,hover_css_map_path], {since: lastRun(copy_hover_css)})
     .pipe(dest(static_css));
   done();
 }

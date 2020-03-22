@@ -48,8 +48,9 @@ try {
         'BizId' => $BizId,
       ],
     ])
-    ->request();
-  $sms_request_result = $request_result->toArray();
+    ->request()
+    ->toArray();
+  $sms_request_result = $request_result;
 } catch (ClientException $e) {
   $sms_request_result['error']['ClientException'] = $e->getErrorMessage() . PHP_EOL;
 } catch (ServerException $e) {

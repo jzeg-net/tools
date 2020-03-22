@@ -33,6 +33,7 @@ session_start();
   <link rel="stylesheet" href="/static/css/hamburgers.min.css">
   <link rel="stylesheet" href="/static/css/bootstrap_5.min.css">
   <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/static/css/bootstrap-table.min.css">
   <link rel="stylesheet" href="/static/font/css/all.min.css">
   <link rel="stylesheet" href="/static/css/tools.min.css">
 

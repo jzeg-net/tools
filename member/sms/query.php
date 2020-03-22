@@ -114,21 +114,25 @@ if (!defined('JZEG_NET')) die();
     </div>
     <div class="mb-2">
       <div class="font-weight-bolder">查询结果</div>
-      <div class="mb-2 px-3 py-2 rounded border small" id="jt_sms_query_smsContent">
-        发送的短信内容
-        <nav id="jt_sms_query_smsContent_nav" aria-label="页面导航">
-          <ul class="pagination justify-content-center pagination-sm">
-            <li class="page-item">
-              <a class="page-link" href="javascript:" aria-label="上一页"><span aria-hidden="true">&laquo;</span></a>
-            </li>
-            <li class="page-item active"><a class="page-link" href="javascript:">1</a></li>
-            <li class="page-item"><a class="page-link" href="javascript:">2</a></li>
-            <li class="page-item"><a class="page-link" href="javascript:">3</a></li>
-            <li class="page-item">
-              <a class="page-link" href="javascript:" aria-label="下一页"><span aria-hidden="true">&raquo;</span></a>
-            </li>
-          </ul>
-        </nav>
+      <div>
+        <div>
+          <div id="Message"></div>
+          <div id="Code"></div>
+          <div id="RequestId"></div>
+        </div>
+        <table id="jt_sms_query_table">
+          <thead>
+          <tr>
+            <th data-field="TemplateCode">短信模板ID</th>
+            <th data-field="ReceiveDate">短信接收日期和时间</th>
+            <th data-field="PhoneNum">接收短信的手机号码</th>
+            <th data-field="Content">短信内容</th>
+            <th data-field="SendStatus">短信发送状态</th>
+            <th data-field="SendDate">短信发送日期和时间</th>
+            <th data-field="ErrCode">运营商短信状态码</th>
+          </tr>
+          </thead>
+        </table>
       </div>
     </div>
   </div>

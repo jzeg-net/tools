@@ -101,10 +101,15 @@ $().ready(function () {
       type: 'post',
       url: query_data['ajax']['url'],
       data: query_data['data'],
+      timeout: 8000,
       dataType: 'json',
       success: function (data) {
         console.log(data);
-        ajax_result_success(data, query_data.result_element);
+        if(data['sms_request']['SmsSendDetailDTOs'].hasOwnProperty('SmsSendDetailDTO')){
+          ajax_result_success(data['sms_request']['SmsSendDetailDTOs']['SmsSendDetailDTO']);
+        }else {
+          console.log('超时');
+        }
         remove_spinner_icon(query_data['ajax']['e_target']);
       },
       error: function (error) {
@@ -114,8 +119,21 @@ $().ready(function () {
     });
   }
 
-  function ajax_result_success(result_data, element) {
-    element.innerHTML = JSON.stringify(result_data);
+  function ajax_result_success(result_data) {
+    let data = [];
+    for (let x = result_data.length, i = 0; i < x; i++) {
+      data[i] = {
+        'TemplateCode': result_data[i]['TemplateCode'],
+        'ReceiveDate': result_data[i]['ReceiveDate'],
+        'PhoneNum': result_data[i]['PhoneNum'],
+        'Content': result_data[i]['Content'],
+        'SendStatus': result_data[i]['SendStatus'],
+        'SendDate': result_data[i]['SendDate'],
+        'ErrCode': result_data[i]['ErrCode'],
+      };
+    }
+
+    $('#jt_sms_query_table').bootstrapTable(data);
   }
 
 });
