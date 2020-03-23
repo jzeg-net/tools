@@ -101,8 +101,18 @@
 
 .grecaptcha-badge { visibility: hidden;}
 
-/* 滚动 */
+/* 响应式宽度 */
+.min-w-rem-1 {min-width: 1rem;}
+.min-w-rem-2 {min-width: 2rem;}
+.min-w-rem-3 {min-width: 3rem;}
+.min-w-rem-4 {min-width: 4rem;}
+.min-w-rem-5 {min-width: 5rem;}
+.min-w-rem-6 {min-width: 6rem;}
+.min-w-rem-7 {min-width: 7rem;}
+.min-w-rem-8 {min-width: 8rem;}
+.min-w-rem-9 {min-width: 9rem;}
 
+/* 滚动 */
 .slideUp { transform: translateY(-100px); transition: transform .5s ease-out;}
 .slideDown { transform: translateY(0); transition: all .5s ease-out;}
 

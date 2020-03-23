@@ -1,26 +1,26 @@
 <?php
-if (!defined('title')) define('title', '查询向用户发送的短信内容');
+if (!defined('title')) define('title', '查询发送短信的相关信息');
 require_once dirname(dirname(__DIR__)) . '/header.php';
 if (!defined('JZEG_NET')) die();
 ?>
   <link rel="stylesheet" href="/static/css/sms_query.min.css">
   <div class="py-2 container" id="jt_sms_query">
-    <div class="mb-2 font-weight-bolder">查询向用户发送的短信内容</div>
+    <div class="mb-2 font-weight-bolder">查询发送短信的相关信息</div>
     <div class="mb-2 px-3 py-2 rounded border">
       <div class="form-row form-group">
         <div class="col-12 col-md-6 mb-2 mb-md-0 input-group">
           <div class="input-group-prepend">
             <label class="input-group-text" for="jt_sms_query_accessKeyId">KeyId</label>
           </div>
-          <input type="text" class="form-control" name="jt_sms_query_accessKeyId" id="jt_sms_query_accessKeyId"
-                 placeholder="RAM用户的AccessKeyId" required>
+          <input type="text" class="form-control" id="jt_sms_query_accessKeyId" placeholder="RAM用户的AccessKeyId"
+                 required>
         </div>
         <div class="col-12 col-md-6 input-group">
           <div class="input-group-prepend">
             <label class="input-group-text" for="jt_sms_query_accessSecret">Secret</label>
           </div>
-          <input type="text" class="form-control" name="jt_sms_query_accessSecret" id="jt_sms_query_accessSecret"
-                 placeholder="RAM用户的AccessSecret" required>
+          <input type="text" class="form-control" id="jt_sms_query_accessSecret" placeholder="RAM用户的AccessSecret"
+                 required>
         </div>
         <div class="col-12 form-text small text-muted">
           <span class="small">输入AccessKeyId和AccessSecret</span>
@@ -31,7 +31,7 @@ if (!defined('JZEG_NET')) die();
           <div class="input-group-prepend">
             <label class="input-group-text" for="jt_sms_query_BizId">BizId</label>
           </div>
-          <input type="text" class="form-control" name="jt_sms_query_BizId" id="jt_sms_query_BizId" placeholder="BizId">
+          <input type="text" class="form-control" id="jt_sms_query_BizId" placeholder="BizId">
         </div>
         <div class="form-text small text-muted">
           <span class="small">发送回执ID，即发送流水号</span>
@@ -42,8 +42,7 @@ if (!defined('JZEG_NET')) die();
           <div class="input-group-prepend">
             <label class="input-group-text" for="jt_sms_query_PhoneNumber">号码</label>
           </div>
-          <input type="number" class="form-control" name="jt_sms_query_PhoneNumber" id="jt_sms_query_PhoneNumber"
-                 placeholder="纯手机号码" required>
+          <input type="number" class="form-control" id="jt_sms_query_PhoneNumber" placeholder="纯手机号码" required>
         </div>
         <div class="form-text small text-muted">
           <span class="small">单个手机号码</span>
@@ -54,8 +53,7 @@ if (!defined('JZEG_NET')) die();
           <div class="input-group-prepend">
             <label class="input-group-text" for="jt_sms_query_SendDate">发送日期</label>
           </div>
-          <input type="text" class="form-control" name="jt_sms_query_SendDate" id="jt_sms_query_SendDate"
-                 value="20200318" required>
+          <input type="text" class="form-control" id="jt_sms_query_SendDate" value="20200318" required>
         </div>
         <div class="form-text small text-muted">
           <span class="small">发送日期</span>
@@ -68,7 +66,7 @@ if (!defined('JZEG_NET')) die();
               <label class="input-group-text" for="jt_sms_query_PageSize_number">记录数量</label>
             </div>
             <input type="number" class="form-control text-right" min="1" max="50" step="1" value="25"
-                   name="jt_sms_query_PageSize_number" id="jt_sms_query_PageSize_number">
+                   id="jt_sms_query_PageSize_number">
             <div class="input-group-append">
               <span class="input-group-text">条</span>
             </div>
@@ -92,7 +90,7 @@ if (!defined('JZEG_NET')) die();
               <span class="input-group-text">第</span>
             </div>
             <input type="number" class="form-control text-right" min="1" max="10" step="1" value="1"
-                   name="jt_sms_query_CurrentPage_number" id="jt_sms_query_CurrentPage_number">
+                   id="jt_sms_query_CurrentPage_number">
             <div class="input-group-append">
               <span class="input-group-text">页</span>
             </div>
@@ -108,36 +106,62 @@ if (!defined('JZEG_NET')) die();
         </div>
       </div>
       <div class="form-group d-flex justify-content-center">
-        <input type="hidden" name="_token" id="_token">
+        <input type="hidden" id="_token">
         <button type="button" class="btn btn-outline-success" id="jt_sms_query_submit">查询</button>
       </div>
     </div>
-    <div class="mb-2">
-      <div class="font-weight-bolder">查询结果</div>
+    <!--    <div class="mb-3 d-none" id="jt_sms_query_content">-->
+    <div class="mb-3" id="jt_sms_query_content">
+      <div class="mb-2 font-weight-bolder">查询结果</div>
+      <div id="table_set">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown"
+                    id="table-classes">表单样式</button>
+            <div class="dropdown-menu min-w-rem-7 shadow text-center">
+              <div class="btn-group-sm btn-group-vertical btn-group-toggle" data-toggle="buttons">
+                <label class="min-w-rem-9 border-0 rounded-0 btn btn-outline-secondary active"><input type="checkbox" id="table" checked disabled>table</label>
+                <div class="dropdown-divider border-secondary"></div>
+                <label class="min-w-rem-9 border-0 rounded-0 btn btn-outline-secondary"><input type="checkbox" id="table-bordered">table-bordered</label>
+                <label class="min-w-rem-9 border-0 rounded-0 btn btn-outline-secondary"><input type="checkbox" id="table-borderless">table-borderless</label>
+                <div class="dropdown-divider border-secondary"></div>
+                <div class="dropdown-divider border-secondary"></div>
+                <label class="min-w-rem-9 border-0 rounded-0 btn btn-outline-secondary"><input type="checkbox" id="table-hover">table-hover</label>
+                <label class="min-w-rem-9 border-0 rounded-0 btn btn-outline-secondary"><input type="checkbox" id="table-striped">table-striped</label>
+                <label class="min-w-rem-9 border-0 rounded-0 btn btn-outline-secondary"><input type="checkbox" id="table-dark">table-dark</label>
+                <label class="min-w-rem-9 border-0 rounded-0 btn btn-outline-secondary"><input type="checkbox" id="table-sm">table-sm</label>
+              </div>
+            </div>
+          </div>
+          <div class="input-group-append">
+            <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown"
+                    id="thead-classes">表格样式</button>
+            <div class="dropdown-menu min-w-rem-7 shadow text-center">
+              <div class="btn-group-sm btn-group-vertical btn-group-toggle" data-toggle="buttons">
+                <label class="min-w-rem-9 border-0 rounded-0 btn btn-outline-secondary active"><input type="radio" id="undefined" checked>undefined</label>
+                <label class="min-w-rem-9 border-0 rounded-0 btn btn-outline-secondary"><input type="radio" id="thead-light">thead-light</label>
+                <label class="min-w-rem-9 border-0 rounded-0 btn btn-outline-secondary"><input type="radio" id="thead-dark">thead-dark</label>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
       <div>
         <div>
+          <div id="RequestId"></div>
+          <div id="TotalCount"></div>
           <div id="Message"></div>
           <div id="Code"></div>
-          <div id="RequestId"></div>
         </div>
-        <table id="jt_sms_query_table">
-          <thead>
-          <tr>
-            <th data-field="TemplateCode">短信模板ID</th>
-            <th data-field="ReceiveDate">短信接收日期和时间</th>
-            <th data-field="PhoneNum">接收短信的手机号码</th>
-            <th data-field="Content">短信内容</th>
-            <th data-field="SendStatus">短信发送状态</th>
-            <th data-field="SendDate">短信发送日期和时间</th>
-            <th data-field="ErrCode">运营商短信状态码</th>
-          </tr>
-          </thead>
-        </table>
+        <table id="jt_sms_query_table"></table>
       </div>
     </div>
   </div>
   <div class="d-none">
     <?php require_once dirname(dirname(__DIR__)) . "/javascript.php"; ?>
+    <script src="/static/js/bootstrap-table.min.js"></script>
+    <script src="/static/js/bootstrap-table-zh-CN.min.js"></script>
     <script src="/static/js/sms_query.min.js"></script>
   </div>
 <?php
