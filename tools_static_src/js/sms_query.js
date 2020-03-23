@@ -146,8 +146,12 @@ $().ready(function () {
     $('#jt_sms_query_table').bootstrapTable({
       data: data,
       cache: false,
+      classes: ' table-striped',
+      // theadClasses: '',
       sortable: true,
-      style: true,
+      clickToSelect: true,
+      headerStyle: true,
+      rowStyle: true,
       height: 500,
       locale: 'zh-CN',
       method: 'post',

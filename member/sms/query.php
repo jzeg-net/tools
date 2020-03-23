@@ -110,8 +110,7 @@ if (!defined('JZEG_NET')) die();
         <button type="button" class="btn btn-outline-success" id="jt_sms_query_submit">查询</button>
       </div>
     </div>
-    <!--    <div class="mb-3 d-none" id="jt_sms_query_content">-->
-    <div class="mb-3" id="jt_sms_query_content">
+    <div class="mb-3 d-none" id="jt_sms_query_content">
       <div class="mb-2 font-weight-bolder">查询结果</div>
       <div id="table_set">
         <div class="input-group">
@@ -125,9 +124,9 @@ if (!defined('JZEG_NET')) die();
                 <label class="min-w-rem-9 border-0 rounded-0 btn btn-outline-secondary"><input type="checkbox" id="table-bordered">table-bordered</label>
                 <label class="min-w-rem-9 border-0 rounded-0 btn btn-outline-secondary"><input type="checkbox" id="table-borderless">table-borderless</label>
                 <div class="dropdown-divider border-secondary"></div>
-                <div class="dropdown-divider border-secondary"></div>
                 <label class="min-w-rem-9 border-0 rounded-0 btn btn-outline-secondary"><input type="checkbox" id="table-hover">table-hover</label>
                 <label class="min-w-rem-9 border-0 rounded-0 btn btn-outline-secondary"><input type="checkbox" id="table-striped">table-striped</label>
+                <div class="dropdown-divider border-secondary"></div>
                 <label class="min-w-rem-9 border-0 rounded-0 btn btn-outline-secondary"><input type="checkbox" id="table-dark">table-dark</label>
                 <label class="min-w-rem-9 border-0 rounded-0 btn btn-outline-secondary"><input type="checkbox" id="table-sm">table-sm</label>
               </div>
