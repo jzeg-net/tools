@@ -58,7 +58,7 @@
     "gulp-postcss": "^9.0.0",
     "gulp-rename": "^2.0.0",
     "gulp-terser": "^1.4.0",
-    "postcss": "^8.1.1",
+    "postcss": "^8.2.10",
     "stylelint": "^13.7.2"
   },
   "dependencies": {
