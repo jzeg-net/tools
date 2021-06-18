@@ -1,7 +1,9 @@
 <?php
-if (1 === 1) {
+require_once dirname(dirname(dirname(__DIR__))) . '/phpAuth/auth.php';
+global $Auth;
+if (!$Auth->isLogged()) {
   require_once dirname(dirname(dirname(__DIR__))) . '/config/functions.php';
-  redirect_header_302_login();
+  redirect_header_302_login(getWebsiteURL());
 }
 define('title', '管理灵活码');
 require_once dirname(dirname(__DIR__)) . '/header.php';

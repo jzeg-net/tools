@@ -1,6 +1,6 @@
 <?php
 
-require_once dirname(dirname(dirname(__DIR__))) . '/mysqli/mysqli.php';
+require_once dirname(dirname(dirname(__DIR__))) . '/mysqli/mysqli_exam.php';
 global $db_exam_answer_query;
 
 try {

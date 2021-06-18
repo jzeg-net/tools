@@ -2,9 +2,10 @@
 
 require_once __DIR__ . '/init_functions.php';
 
-function redirect_header_302_login()
+function redirect_header_302_login($formURL = null)
 {
-  header('location: /login.php');
+  $formURL = (!empty($formURL)) ? "?formURL=" . $formURL : '';
+  header('location: /login.php' . $formURL);
   exit();
 }
 

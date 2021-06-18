@@ -7,7 +7,7 @@ if (!defined('JZEG-NET')) die();
   <div class="py-2 container" id="jt_sms_query">
     <div class="mb-2 font-weight-bolder">查询发送短信的相关信息</div>
     <div class="mb-2 px-3 py-2 rounded border">
-      <div class="form-row form-group">
+      <div class="mb-3">
         <div class="col-12 col-md-6 mb-2 mb-md-0 input-group">
           <div class="input-group-prepend">
             <label class="input-group-text" for="jt_sms_query_accessKeyId">KeyId</label>
@@ -26,7 +26,7 @@ if (!defined('JZEG-NET')) die();
           <span class="small">输入AccessKeyId和AccessSecret</span>
         </div>
       </div>
-      <div class="form-group">
+      <div class="mb-3">
         <div class="input-group">
           <div class="input-group-prepend">
             <label class="input-group-text" for="jt_sms_query_BizId">BizId</label>
@@ -37,7 +37,7 @@ if (!defined('JZEG-NET')) die();
           <span class="small">发送回执ID，即发送流水号</span>
         </div>
       </div>
-      <div class="form-group">
+      <div class="mb-3">
         <div class="input-group">
           <div class="input-group-prepend">
             <label class="input-group-text" for="jt_sms_query_PhoneNumber">号码</label>
@@ -48,7 +48,7 @@ if (!defined('JZEG-NET')) die();
           <span class="small">单个手机号码</span>
         </div>
       </div>
-      <div class="form-group">
+      <div class="mb-3">
         <div class="input-group">
           <div class="input-group-prepend">
             <label class="input-group-text" for="jt_sms_query_SendDate">发送日期</label>
@@ -59,7 +59,7 @@ if (!defined('JZEG-NET')) die();
           <span class="small">发送日期</span>
         </div>
       </div>
-      <div class="form-row form-group">
+      <div class="mb-3">
         <div class="col-12 col-md-6 mb-2">
           <div class="mb-1 input-group">
             <div class="input-group-prepend">
@@ -105,7 +105,7 @@ if (!defined('JZEG-NET')) die();
           </div>
         </div>
       </div>
-      <div class="form-group d-flex justify-content-center">
+      <div class="mb-3 d-flex justify-content-center">
         <input type="hidden" id="_token">
         <button type="button" class="btn btn-outline-success" id="jt_sms_query_submit">查询</button>
       </div>

@@ -21,3 +21,4 @@
 
 # 排除本地临时备份文件
 /tools_static_src/**/TmpBack/
+/**/sitemap.*xml

@@ -7,7 +7,7 @@ if (!defined('SITE_HEAD')) die();
     <i class="fas fa-minus" data-toggle="collapse" data-target="#base_information"></i>
   </div>
   <div class="ml-2 collapse show" id="base_information">
-    <div class="form-group form-row">
+    <div class="mb-3">
       <div class="col-auto col-sm-3 col-md-2">
         <label class="mb-0 px-0 px-md-2 px-lg-3 min-w-100 text-align-last col-form-label-sm" for="user_name">用户名</label>
       </div>
@@ -15,7 +15,7 @@ if (!defined('SITE_HEAD')) die();
         <input class="border form-control form-control-sm" type="text" id="user_name" value="abc123" readonly>
       </div>
     </div>
-    <div class="form-group form-row">
+    <div class="mb-3">
       <div class="col-auto col-sm-3 col-md-2">
         <label class="mb-0 px-0 px-md-2 px-lg-3 min-w-100 text-align-last col-form-label-sm" for="nick_name">昵称</label>
       </div>
@@ -23,7 +23,7 @@ if (!defined('SITE_HEAD')) die();
         <input class="border form-control form-control-sm" type="text" id="nick_name" value="杰格网用户">
       </div>
     </div>
-    <div class="form-group form-row">
+    <div class="mb-3">
       <div class="col-auto col-sm-3 col-md-2">
         <div class="mb-0 px-0 px-md-2 px-lg-3 min-w-100 text-align-last col-form-label-sm">性别</div>
       </div>
@@ -44,7 +44,7 @@ if (!defined('SITE_HEAD')) die();
         </div>
       </div>
     </div>
-    <div class="form-group d-flex justify-content-center">
+    <div class="mb-3 d-flex justify-content-center">
       <button class="w-50 w-md-25 btn btn-sm btn-outline-success font-weight-bold" type="button">保存</button>
     </div>
   </div>
@@ -54,7 +54,7 @@ if (!defined('SITE_HEAD')) die();
     <i class="fas fa-plus" data-toggle="collapse" data-target="#social_information"></i>
   </div>
   <div class="ml-2 collapse" id="social_information">
-    <div class="form-group form-row">
+    <div class="mb-3">
       <div class="col-auto col-sm-3 col-md-2">
         <label class="mb-0 px-0 px-md-2 px-lg-3 min-w-100 text-align-last col-form-label-sm" for="dingtalk">钉钉</label>
       </div>

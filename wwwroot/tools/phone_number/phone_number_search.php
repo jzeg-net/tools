@@ -18,6 +18,7 @@ if ($query_key === "") {
 $regional_value = filter_input(INPUT_POST, 'search_regional');
 
 require_once dirname(__FILE__) . "/phone_number_common.php";
+global $PREG_rules, $regional_array;
 
 $regional = filter_var($regional_value, FILTER_VALIDATE_REGEXP, filter_validate_options_regexp($PREG_rules['a_zA_Z4']));
 $regional = $regional ? $regional : '';
@@ -32,6 +33,7 @@ $static = "yes";
 $result_columns = ["phone_name", "tel_number", "mobile_number", "department", "phone_nick_name", "note"];
 
 require_once dirname(dirname(dirname(__DIR__))) . "/mysqli/mysqli.php";
+global $db;
 
 $db->connection("phone_number_search");
 $db->Where("static", $static);

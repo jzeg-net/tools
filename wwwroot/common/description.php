@@ -1,5 +1,5 @@
 <?php
-if (defined('descriptionContent')) {
+if (defined('descriptionContent') && !empty(descriptionContent)) {
   $description = '<meta name="description" content="' . descriptionContent . '">';
   echo $description;
 }

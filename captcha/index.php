@@ -1,5 +1,6 @@
 <?php
 require_once dirname(__FILE__) . "/captcha.php";
+global $captcha;
 
 $captcha
   ->setBackgroundImages(array())

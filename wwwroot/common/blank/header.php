@@ -14,18 +14,19 @@ set_session_cookie('logged_in', $_SESSION['logged_in']);
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="applicable-device" content="pc,mobile">
-  <?php require_once dirname(__FILE__) . '/common/description.php'; ?>
-  <?php require_once dirname(__FILE__) . '/common/keywords.php'; ?>
+  <?php require_once dirname(dirname(__DIR__)) . '/common/description.php'; ?>
+  <?php require_once dirname(dirname(__DIR__)) . '/common/keywords.php'; ?>
   <meta name="renderer" content="webkit">
   <meta name="referrer" content="always">
   <meta http-equiv="Cache-Control" content="no-siteapp">
   <meta http-equiv="Cache-Control" content="no-transform">
 
-  <!--    <link rel="apple-touch-icon" href="">-->
   <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="/static/css/animate.min.css">
   <link rel="stylesheet" href="/static/css/hover.min.css">
-  <link rel="stylesheet" href="/static/css/bootstrap_next.min.css">
+  <link rel="stylesheet" href="/static/css/hamburgers.min.css">
   <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/static/css/bootstrap-table.min.css">
   <link rel="stylesheet" href="/static/font/css/all.min.css">
   <link rel="stylesheet" href="/static/css/tools.min.css">
   <link rel="stylesheet" href="/static/css/account_form.min.css">
@@ -52,4 +53,4 @@ set_session_cookie('logged_in', $_SESSION['logged_in']);
     <?php include_once dirname(__FILE__) . '/header_nav.php'; ?>
     <div class="border-bottom"></div>
   </div>
-  <div id="jt_content" class="min-vh-100">
+  <div id="jt_content">

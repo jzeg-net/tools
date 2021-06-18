@@ -10,13 +10,11 @@ indent_style             = space
 insert_final_newline     = true
 trim_trailing_whitespace = true
 
-[tools_static_src/css/*.css]
-indent_size = 2
+[tools_static_src/css/**/*.css]
 tab_width = 2
 ij_css_align_closing_brace_with_properties = false
 ij_css_blank_lines_around_nested_selector = 0
 ij_css_blank_lines_between_blocks = 0
-ij_css_brace_placement = 0
 ij_css_enforce_quotes_on_format = true
 ij_css_hex_color_long_format = false
 ij_css_hex_color_lower_case = false
@@ -29,4 +27,5 @@ ij_css_properties_order = font,font-family,font-size,font-weight,font-style,font
 ij_css_space_after_colon = true
 ij_css_space_before_opening_brace = true
 ij_css_use_double_quotes = false
-ij_css_value_alignment = 0
+
+#[tools_static_src/js/**/*.js]

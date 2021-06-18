@@ -7,8 +7,9 @@ if (categoryList) {
       'undefined' === typeof QUESTION_BANK3 &&
       'undefined' === typeof QUESTION_BANK4
     ) {
-      bootstrapModalJs('', create_small_center_text('题库内容出错，请等待更新题库', 'danger'), '', 'sm', true);
+      bootstrapModalJs('', create_small_center_text('获取题库失败。', 'danger'), '', 'sm', true);
     } else {
+      bootstrapModalJs('', create_small_center_text('获取题库成功，请选择题目类别进行查看。', 'success'), '', 'sm', true);
       categoryList.addEventListener('click', function (e) {
         let e_target = e.target;
         if (e_target.tagName === 'LABEL') {
@@ -18,7 +19,7 @@ if (categoryList) {
         }
       });
     }
-  }, 1100);
+  }, 1e3);
 }
 
 // 检查结果结构

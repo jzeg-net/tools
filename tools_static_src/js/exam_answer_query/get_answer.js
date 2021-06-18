@@ -131,6 +131,12 @@ $().ready(function () {
   save_exam.addEventListener('click', function () {
   });
 });
+$().ready(function () {
+  let analyticsLink = document.querySelector('#analyticsLink');
+  analyticsLink.addEventListener('blur', function () {
+    console.log(analyticsLink.value);
+  })
+});
 
 function verifyResultStatus(data = '') {
   if (0 > data) {

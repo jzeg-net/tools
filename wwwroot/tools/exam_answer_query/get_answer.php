@@ -11,6 +11,12 @@ require_once dirname(dirname(__DIR__)) . '/header.php';
 ?>
 <link rel="stylesheet" href="/static/css/exam_answer_query/get_answer.min.css">
 <div class="mt-5 container-fluid">
+  <div class="mb-4 py-4 container rounded border" id="analytics">
+    <div class="mb-1 input-group">
+      <label class="input-group-text" for="analyticsLink">网址</label>
+      <input class="form-control" type="text" id="analyticsLink" placeholder="考试链接" pattern="">
+    </div>
+  </div>
   <div class="mb-3 py-4 container rounded border" id="parameter">
     <div class="mb-3">
       <div class="input-group">
@@ -74,10 +80,11 @@ require_once dirname(dirname(__DIR__)) . '/header.php';
   <div class="mb-3 px-0 container card">
     <div class="card-header">
       <nav class="nav nav-tabs card-header-tabs">
-        <a class="nav-link" data-toggle="tab" href="#tabNumber">编号</a>
-        <a class="nav-link" data-toggle="tab" href="#tabInternetSite">网址</a>
-        <a class="nav-link" data-toggle="tab" href="#tabViewResult">成绩</a>
-        <a class="nav-link small ml-auto text-muted fas fa-plus-square" data-toggle="collapse" href="#collapse" role="button" aria-expanded="true" aria-controls="collapse"></a>
+        <a class="nav-link" data-bs-toggle="tab" href="#tabNumber">编号</a>
+        <a class="nav-link" data-bs-toggle="tab" href="#tabInternetSite">网址</a>
+        <a class="nav-link" data-bs-toggle="tab" href="#tabViewResult">成绩</a>
+        <a class="nav-link small ml-auto text-muted fas fa-plus-square" data-bs-toggle="collapse" href="#collapse"
+           role="button" aria-expanded="true" aria-controls="collapse"></a>
       </nav>
     </div>
     <div class="collapse fade show" id="collapse">
@@ -111,14 +118,15 @@ require_once dirname(dirname(__DIR__)) . '/header.php';
   </div>
   <div class="mb-3 pt-5 d-flex justify-content-center flex-column align-items-center">
     <div class="mb-2 px-4 py-2 border border-secondary shadow rounded-lg d-flex align-items-center user-select-none"
-         id="crawlStatus" data-toggle="collapse" data-target="#help_color_circle">
+         id="crawlStatus" data-bs-toggle="collapse" data-bs-target="#help_color_circle">
       <span>抓取状态：</span>
       <i class="mx-2 text-black-50 fa-lg fas fa-circle"></i>
     </div>
     <div class="collapse show" id="help_color_circle">
       <div class="d-flex justify-content-center">
-        <div data-toggle="collapse" data-target="#help_color_circle">
-          <table class="text-center table table-sm table-bordered table-info table-striped table-hover table-responsive">
+        <div data-bs-toggle="collapse" data-bs-target="#help_color_circle">
+          <table
+            class="text-center table table-sm table-bordered table-info table-striped table-hover table-responsive">
             <thead>
             <tr>
               <th>图形</th>

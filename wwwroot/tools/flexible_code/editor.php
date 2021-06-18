@@ -34,7 +34,7 @@ require_once dirname(dirname(__DIR__)) . '/header.php';
         <label class="sr-only" for="lhm_editor_margin_range">边距范围</label>
         <input type="range" class="form-range" min="0" max="10" step="0.1" value="0" id="lhm_editor_margin_range">
       </div>
-      <div class="mb-3 form-row">
+      <div class="mb-3">
         <div class="mb-2 mb-md-auto col-12 col-md-6 input-group" id="lhm_editor_color_dark_colorPicker">
           <label class="input-group-text" for="lhm_editor_color_dark">前景色</label>
           <input type="text" class="form-control text-center" value="#000000" id="lhm_editor_color_dark">
@@ -91,7 +91,7 @@ require_once dirname(dirname(__DIR__)) . '/header.php';
     </div>
     <div class="position-sticky mb-3 px-4 pt-3 pb-4 border rounded bg-white" id="lhm_preview" style="bottom: 0;">
       <div class="mb-2 font-weight-bolder text-warning">灵活码实时样式预览</div>
-      <div class="form-row">
+      <div>
         <div class="col-12 col-md-5 col-lg-4 mb-2 py-2 rounded bg_square bg-light-50 mb-md-0 text-center">
           <img src="data:image/png;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
                alt="灵活码实时效果预览" class="border img-fluid bg-white" id="lhm_preview_img"

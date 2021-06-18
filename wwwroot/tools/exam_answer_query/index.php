@@ -6,7 +6,9 @@ if ($_POST) {
   exit('当前不认为需要支持此方式进行查询');
 }
 
-define('title', '考试信息参考');
+define('title', '考试酷辅助工具');
+define('descriptionContent', '考试酷辅助工具为您提供考试酷试卷的重复考试，自动答题，自动交卷，手动查询题目参考答案等考生的辅助功能，让您可以更便捷的对考试酷的试卷的进行学习和测验。');
+define('keywordsContent', '考试酷自动答题,考试酷辅助答题,考试酷自动登录,考试酷重复答题,考试酷答题助手,考试酷答题器,考试酷自动交卷,考试酷自动识别,考试酷辅助工具');
 require_once dirname(dirname(__DIR__)) . '/header.php';
 ?>
 <link rel="stylesheet" href="/static/css/exam_answer_query/index.min.css">

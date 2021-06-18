@@ -41,7 +41,7 @@ $().ready(function () {
       buttonTriggerEL.addEventListener('hide.bs.tab', function () {
         buttonButtonToggle.toggle();
       })
-    })
+    });
 
     let getRelatedLines = document.querySelector('#getRelatedLines');
     let getRelatedStations = document.querySelector('#getRelatedStations');

@@ -1,9 +1,7 @@
 <div id="account_sign_in_phone">
-  <div class="mb-3 form-row align-items-center align-items-sm-stretch">
-    <div class="col-auto col-sm-2">
-      <label class="mb-1 mb-sm-0 pt-0 pt-sm-1 d-inline-block min-w-100 text-align-last" for="signIn_phone">手机号</label>
-    </div>
-    <div class="col-12 col-sm-10 input-group">
+  <div class="mb-3">
+    <label class="d-none d-sm-block col-2 mb-0 mb-sm-1 text-nowrap text-align-last" for="signIn_phone">手机号</label>
+    <div class="col-sm-10 input-group">
       <div class="input-group-prepend">
         <div class="input-group-text dropdown-toggle" data-toggle="dropdown" id="phone_area">+86</div>
         <div class="dropdown-menu min-w-rem-2 text-center">
@@ -28,6 +26,6 @@
   </div>
   <?php include dirname(__FILE__) . "/captcha_form-group.php"; ?>
   <div class="d-flex justify-content-center">
-    <button class="w-50 rounded-pill btn btn-secondary" type="button" id="sign_in_phone_submit" disabled>登录</button>
+    <button class="w-50 rounded-lg btn btn-secondary" type="button" id="sign_in_phone_submit" disabled>登录</button>
   </div>
 </div>

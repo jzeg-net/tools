@@ -636,7 +636,7 @@ function create_add_number_form() {
 
 function create_add_number_form_close() {
   let div = document.createElement("div");
-  let close_btn = create_close_btn(dispose_add_number_form, 'float-right pb-2 pb-md-0');
+  let close_btn = create_close_btn(dispose_add_number_form, 'float-right');
 
   div.className = 'clearfix';
 

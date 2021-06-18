@@ -12,7 +12,7 @@ require_once dirname(__DIR__) . "/header.php";
 <link rel="stylesheet" href="/static/css/photo_info.min.css">
 <div class="container mt-5" id="jt_container">
   <div id="photo_info_tool">
-    <div class="mb-3 form-row justify-content-center">
+    <div class="mb-3 d-flex justify-content-center">
       <div class="custom-file col-11 col-sm-8">
         <input class="custom-file-input" type="file" id="photo_input" name="photo_input[]" multiple="multiple"
                accept="image/jpeg,image/tiff,image/png" style="cursor: pointer;">

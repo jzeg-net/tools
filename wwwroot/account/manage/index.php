@@ -1,5 +1,7 @@
 <?php
-if (!defined('title')) define('title', '账号管理');
+define('title', '账号管理');
+define('descriptionContent', '');
+define('keywordsContent', '');
 require_once dirname(dirname(__DIR__)) . '/header.php';
 if (!defined('SITE_HEAD')) die();
 ?>

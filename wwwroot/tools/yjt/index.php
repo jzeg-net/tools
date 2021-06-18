@@ -5,7 +5,7 @@ define('keywordsContent', '应急安全知识网络竞赛,河北省,2020年,安�
 require_once dirname(dirname(__DIR__)) . '/header.php';
 ?>
 <link rel="stylesheet" href="/static/css/yjt/index.min.css">
-<div class="mt-5 container">
+<div class="mt-5 container min-vh-90">
   <div class="mb-3 d-flex justify-content-end align-items-center small">
     <a class="ml-3 rounded px-2 border text-decoration-none text-success" href="javascript:" data-toggle="collapse" data-target="#tool-explanation">说明</a>
     <a class="ml-3 rounded px-2 border text-decoration-none text-danger" href="javascript:" data-toggle="collapse" data-target="#tool-regulation">规则</a>
